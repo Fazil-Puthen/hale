@@ -1,0 +1,19 @@
+ Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Card(
+                          child: Container(
+                            height: 200,
+                            width: screenwidth * 0.4,
+                            color: Colors.blue,
+                          ),
+                        ),
+                        Card(
+                          child: Container(
+                            height: 200,
+                            width: screenwidth * 0.4,
+                            color: Colors.yellow,
+                          ),
+                        )
+                      ],
+                    );

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "737008980753",
+    "project_id": "hale-54ebc",
+    "storage_bucket": "hale-54ebc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737008980753:android:89d19b1a38c2ac72f6f2b0",
+        "android_client_info": {
+          "package_name": "com.shop.hale"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF2PqTsiDkOsjYJVjoNhlRq_8TbWPVrrQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
