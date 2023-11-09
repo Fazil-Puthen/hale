@@ -27,7 +27,7 @@ class Splashscreen extends StatelessWidget {
             child: Image.asset("assets/Hale.png"),
           ),
           onAnimationEnd: () => debugPrint("On Fade In End"),
-          defaultNextScreen:logged != null?const HomeScreen():LoginPage()
+          defaultNextScreen:logged != null?HomeScreen():LoginPage()
         ),
     );
   }

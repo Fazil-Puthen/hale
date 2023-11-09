@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:hale/Presentation/cartpage/cart_screen.dart';
 import 'package:hale/Presentation/detailspage/details_screen.dart';
+import 'package:hale/Presentation/homescreen.dart/bloc/home_bloc.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation_screen.dart';
 import 'package:hale/Presentation/login_or_signup/auth_bloc/auth_bloc.dart';
 import 'package:hale/Presentation/login_or_signup/login_screen.dart';
@@ -28,8 +29,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthBloc(),
+    return MultiBlocProvider(
+      providers: [ 
+        BlocProvider(create:(context) => AuthBloc() ),
+        BlocProvider(create: (context)=>HomeBloc()) ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',

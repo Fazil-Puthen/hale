@@ -25,23 +25,26 @@ class Textwidget extends StatelessWidget {
   final String text;
   final TextInputType keyboard;
   final TextEditingController control;
+  String? Function(String?) validator;
 
 
 
  
-  const Textwidget({
+   Textwidget({
     super.key,
     required this.text,
     required this.keyboard,
     required this.control,
+     required this.validator,
     
   
   });
-
+  final formkey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Opacity(opacity: .7,
       child: TextFormField(
+        validator: validator,
         keyboardType: keyboard,
         controller: control,
         decoration: InputDecoration(

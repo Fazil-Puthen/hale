@@ -1,11 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthReopsitoy{
   final fire=FirebaseAuth.instance;
 
-  Future<bool> signup({required email,required password})async{
+  Future<bool> signup({required email,required password,required name,required phone})async{
     try {
-  final result=await fire.createUserWithEmailAndPassword(
+      await Future.delayed(Duration(seconds: 3));
+        await FirebaseFirestore.instance.collection('users').doc().set({
+      'Name':name,
+      'Phone':phone,
+      'Mail':email,
+    });
+  await fire.createUserWithEmailAndPassword(
     email: email,
     password: password,
   );

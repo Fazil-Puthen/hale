@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hale/Presentation/common_widgets/constants.dart';
-import 'package:hale/Presentation/homescreen.dart/widgets/drawer_items.dart';
+import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/refracted_widgets/drawer_items.dart';
 import 'package:hale/Presentation/login_or_signup/auth_bloc/auth_bloc.dart';
 import 'package:hale/Presentation/login_or_signup/login_screen.dart';
 import 'package:hale/Presentation/profile_screen/profile_screen.dart';

@@ -2,11 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
 import 'package:hale/Presentation/login_or_signup/auth_repos/auth_repository.dart';
 import 'package:meta/meta.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 part 'auth_event.dart';
 part 'auth_state.dart';
 
@@ -27,7 +24,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if(event.email.isEmpty||event.password.isEmpty){
         emit(EmptyFieldState());
       }else{
-      final success=await authrepo.signup(email: event.email, password: event.password);
+      final success=await authrepo.signup(
+      email: event.email,
+       password: event.password,
+       name: event.name,
+       phone: event.phone);
       print('tried');
       if(success){
         emit(SignupsSuccess());

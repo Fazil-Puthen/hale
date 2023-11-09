@@ -15,6 +15,7 @@ class SignUp extends StatelessWidget {
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
   final namecontroller=TextEditingController();
+  final formkey=GlobalKey<FormState>();
   
 
   @override
@@ -64,26 +65,57 @@ class SignUp extends StatelessWidget {
                       ),
                     ),
                     Textwidget(
+                      validator: (value) {
+                        if(value==null||value.isEmpty)
+                        {
+                          return 'Please enter your name';
+                        }
+                      },
                       text: 'Name',
                       keyboard: TextInputType.name,
                       control: namecontroller,
                     ),
                     loginnbox,
-                    Textwidget(
-                      text: 'Phone',
-                      keyboard: TextInputType.name,
-                      control: phonecontroller,
-                    ),
-                    Textwidget(
-                      text: 'Email',
-                      keyboard: TextInputType.name,
-                      control: emailcontroller,
-                    ),
-                    loginnbox,
-                    Textwidget(
-                      text: 'password',
-                      keyboard: TextInputType.name,
-                      control: passwordcontroller,
+                    Form(
+                      key: formkey,
+                      child: Column(
+                        children: [
+                          Textwidget(
+                                validator: (value) {
+                              if(value==null||value.isEmpty)
+                              {
+                                return 'Please enter phone number';
+                              }
+                            },
+                            text: 'Phone',
+                            keyboard: TextInputType.number,
+                            control: phonecontroller,
+                          ),
+                          Textwidget(
+                                validator: (value) {
+                              if(value==null||value.isEmpty)
+                              {
+                                return 'Email is mandatory';
+                              }
+                            },
+                            text: 'Email',
+                            keyboard: TextInputType.name,
+                            control: emailcontroller,
+                          ),
+                          loginnbox,
+                          Textwidget(
+                                validator: (value) {
+                              if(value==null||value.isEmpty)
+                              {
+                                return 'Password is mandatory';
+                              }
+                            },
+                            text: 'password',
+                            keyboard: TextInputType.name,
+                            control: passwordcontroller,
+                          ),
+                        ],
+                      ),
                     ),
                     
                     loginnbox,
@@ -98,10 +130,7 @@ class SignUp extends StatelessWidget {
                           else if(state is SigninSuccess){
                             Navigator.of(context).
                             pushAndRemoveUntil(
-                              MaterialPageRoute(builder: (ctx)=>HomeScreen()), (route) => false);
-                          }
-                          else if(state is EmptyFieldState){
-                          errorsnackbar('Mandatory fields should not be empty', context);
+                              MaterialPageRoute(builder: (ctx)=> HomeScreen()), (route) => false);
                           }
                           else if(state is Autherror){
                             errorsnackbar('Email or Password not valid', context);
@@ -114,12 +143,18 @@ class SignUp extends StatelessWidget {
                             screenheight: screenheight * 0.06,
                             heading: 'Sign Up',
                              onTap: () {
+                             if(formkey.currentState!.validate()){
+                              String name=namecontroller.text.trim();
+                              String phone=phonecontroller.text.trim();
                               final email = emailcontroller.text.trim();
                               final password = passwordcontroller.text.trim();
                               context.read<AuthBloc>().add(Signupevent(
-                                  email: email, password: password));
+                                name: name,
+                                phone: phone,
+                                  email: email, 
+                                  password: password));
                              
-                            },),),
+                            }},),),
                             loginnbox,
                             TextButton(onPressed:(){
                               Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx)=>LoginPage()));

@@ -4,11 +4,14 @@ part of 'auth_bloc.dart';
 abstract class AuthEvent {}
 
 class Signupevent extends AuthEvent{
- 
+  final String name;
+  final String phone;
   final String email;
   final String password;
  
   Signupevent({
+    required this.name,
+    required this.phone,
   required this.email,
   required this.password,
   });

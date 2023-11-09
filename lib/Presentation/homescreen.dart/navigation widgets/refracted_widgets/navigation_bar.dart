@@ -1,6 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
 
 class NavigatioBarCurve extends StatelessWidget {
   final  Function(int)? ontabtapped;
@@ -19,7 +18,7 @@ class NavigatioBarCurve extends StatelessWidget {
         animationCurve: Curves.ease,
         backgroundColor: Colors.white,
         color: Colors.transparent,
-        buttonBackgroundColor: Colors.amber,
+        buttonBackgroundColor: Colors.amber.withOpacity(0.5),
         items: const [
           Icon(Icons.home_outlined),
           Icon(Icons.category_outlined),

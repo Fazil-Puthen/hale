@@ -13,7 +13,7 @@ class CategoryWidget extends StatelessWidget {
       height: double.maxFinite,
       color: pinkcolor,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20), 
         child: ListView.separated(
               itemCount: imagelist.length,
               itemBuilder: (context, index) {

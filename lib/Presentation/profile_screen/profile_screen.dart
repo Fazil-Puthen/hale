@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hale/Presentation/common_widgets/constants.dart';
-import 'package:hale/Presentation/homescreen.dart/widgets/drawer.dart';
+import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/refracted_widgets/drawer.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
