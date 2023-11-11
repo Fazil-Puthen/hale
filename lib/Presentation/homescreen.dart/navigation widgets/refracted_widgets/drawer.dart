@@ -62,7 +62,7 @@ class DrawerWidget extends StatelessWidget {
               dbox,
               const DrawerItems(icon: Icon(Icons.payment), label: 'Payment'),
               dbox,
-              GestureDetector(
+              InkWell(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>ProfilePage()));
                 },
@@ -78,7 +78,7 @@ class DrawerWidget extends StatelessWidget {
                     Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (ctx)=>LoginPage()), (route) => false);
                   }
                 },
-                child: GestureDetector(
+                child: InkWell(focusColor: Colors.amber,
                     onTap: () {
                       context.read<AuthBloc>().add(Signoutevent());
                     },

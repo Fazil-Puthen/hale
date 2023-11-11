@@ -60,6 +60,9 @@ class LoginPage extends StatelessWidget {
                               if(value==null||value.isEmpty){
                                 return 'Enter a Username';
                               }
+                              else if(!value.contains('@')){
+                                return 'Enter a valid Email';
+                              }
                             },
                             keyboard: TextInputType.name,
                             control: emailcontroller,
@@ -74,10 +77,27 @@ class LoginPage extends StatelessWidget {
                             control: passwordcontroller,
                           ),
                         ])),
+                        loginnbox,
+                          BlocBuilder<AuthBloc, AuthState>(
+                      buildWhen: (previous, current) => current is Autherror,
+                      builder: (context, state) {
+                        if(state is Autherror){
+                        return Container(width: screenwidth,
+                        height: 50,
+                        child:  Center(child: Row(
+                          children: [const Icon(Icons.error,color: Color.fromARGB(255, 230, 207, 4),),
+                            Text('The email or password you entered is not valid',
+                            style: detailfont(10,Colors.red,FontWeight.w300),),
+                          ],
+                        )),);}
+                        else{return SizedBox();}
+                      },
+                    ),
                     loginnbox,
                     BlocListener<AuthBloc, AuthState>(
                       listener: (context, state) {
                         if (state is Loadingstate) {
+                          debugPrint('this is loading state');
                           showDialog(
                               context: context,
                               builder: (context) {
@@ -88,12 +108,18 @@ class LoginPage extends StatelessWidget {
                                 );
                               });
                         } else if (state is SigninSuccess) {
+                          userid=emailcontroller.text.trim();
+                          debugPrint('this is success');
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
                                   builder: (ctx) => HomeScreen()),
                               (route) => false);
                         } else if (state is Autherror) {
-                          errorsnackbar('nothing', context);
+                           Navigator.of(context).pop();
+                          emailcontroller.clear();
+                          passwordcontroller.clear();
+                          debugPrint('this is error');
+                          errorsnackbar('Authentication Error', context);
                         }
                       },
                       child: ContainerButton(
@@ -109,6 +135,7 @@ class LoginPage extends StatelessWidget {
                           screenheight: screenheight * 0.06,
                           heading: 'Sign In'),
                     ),
+                    loginnbox,
                     loginnbox,
                     const SimpleText(
                       text: 'Or',

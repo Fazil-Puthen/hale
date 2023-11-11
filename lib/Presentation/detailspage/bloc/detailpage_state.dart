@@ -9,3 +9,8 @@ class Detailedstate extends DetailpageState{
   final DocumentSnapshot productsnapshot;
   Detailedstate({required this.productsnapshot});
 }
+
+class Buttonclickedstate extends DetailpageState{
+  final bool clicked;
+  Buttonclickedstate({required this.clicked});
+}

@@ -19,7 +19,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   
   //signupevent
   FutureOr<void> signupeventhandler(Signupevent event, Emitter<AuthState> emit)async {
-    emit(Loadingstate());
+    emit(SignupLoadingstate());
     try{
       if(event.email.isEmpty||event.password.isEmpty){
         emit(EmptyFieldState());
@@ -34,7 +34,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(SignupsSuccess());
       }
       else{
-        emit(Autherror());
+        emit(SignupAutherror());
       }}
     }   
     catch(e){

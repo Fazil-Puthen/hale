@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hale/Models/productmodel.dart';
 import 'package:hale/Presentation/common_widgets/constants.dart';
 import 'package:hale/Presentation/detailspage/details_screen.dart';
 import 'package:hale/Presentation/homescreen.dart/bloc/home_bloc.dart';
+import 'package:hale/Presentation/shoppage/bloc/shoppage_bloc.dart';
+import 'package:hale/Presentation/shoppage/shopscreen.dart';
 
 
 class HomeWidget extends StatefulWidget {
@@ -63,9 +66,18 @@ class _HomeWidgetState extends State<HomeWidget> {
                             final value=snapshot.data.docs[index];
                             return InkWell(
                               onTap: () {
-                                String docid=value.id;
+                                // String docid=value.id;
+                                final product=Productmodel(
+                                brand: value['Brand'],
+                                name: value['Name'],
+                                category: value['category'], 
+                                description: value['description'],
+                                price: value['price'], 
+                                quantitiy: value['quantity'],
+                                imageurl: value['imageurl']);
                                 // context.read<DetailpageBloc>().add(DetailedviewEvent(docid: docid));
-                                Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>DetailsScreen(productdata: value,)));
+                                Navigator.of(context).push(MaterialPageRoute(builder:
+                                 (ctx)=>DetailsScreen(productdata: product,)));
                               },
                                 child: Card(
                               child: Column(
@@ -128,7 +140,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                       return OutlinedButton(
                         onPressed: () {
                          String categoryitem=category[index];
-                         context.read<HomeBloc>().add(Navigationwidgetchangeevent(index: 2,category: categoryitem));
+                         print(categoryitem);
+                        //  context.read<HomeBloc>().add(Navigationwidgetchangeevent(index: 2,));
+                         context.read<ShoppageBloc>().add(Homecategoryselectedevent(category: categoryitem));
+                         Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>Shoppage(category: categoryitem,)));
                         },
                         style: ButtonStyle(
                             backgroundColor:

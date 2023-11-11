@@ -5,6 +5,8 @@ import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/home_sliv
 import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/saved_sliver_body.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/shop_sliver_body.dart';
 
+
+String userid='12323';
 final cardfont=GoogleFonts.aBeeZee(fontSize: 14,fontWeight:FontWeight.w400,color: Colors.black);
 final textfont=GoogleFonts.aBeeZee(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.black);
 final errorfont=GoogleFonts.aBeeZee(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.red);
@@ -22,14 +24,15 @@ const sports='assets/sportswear.jpg';
 const trek='assets/trek.jpg';
 const woman='assets/woman.jpg';
 const hale='assets/Hale.png';
+const error='assets/9623052.png';
 
-final List<String> category = ['Pants','T-shirts','Shirts','Trousers','Joggers',];
+final List<String> category = ['Pants','Tshirt','Shirt','Trousers','Joggers',];
  List<Widget> navigationwidgets=[HomeWidget(),CategoryWidget(),ShopWidget(),WishWidget()];
 const List<String> imagelist=[man,woman,boy,girl,sports,trek];
 const List<String> taglist=['Men','Women','Boys','Girls','Sports','Trek'];
 const List<String> heading=['Home','Category','Shop','Wishlist'];
 
-
+//error snackbar
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> errorsnackbar(String text,BuildContext context){
   return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),   
@@ -42,4 +45,41 @@ TextStyle detailfont(double size,Color color,FontWeight weight)
 {
   return GoogleFonts.aBeeZee(fontSize: size,color:color,fontWeight: weight);
   
+}
+
+
+//error widget
+class errorwidget extends StatelessWidget {
+  final String text;
+  const errorwidget({
+    super.key,required this.text
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: [
+          Image.asset(
+            error,
+            scale: 4,
+          ),
+          box,
+          Text(
+            text,
+            style: detailfont(20, Colors.red, FontWeight.w400),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+String validateName(String value) {
+  final hasNumber = RegExp(r'\d').hasMatch(value); // '\d' matches any digit
+
+  if (hasNumber) {
+    return 'Name should not contain numbers';
+  }
+  return '';
 }

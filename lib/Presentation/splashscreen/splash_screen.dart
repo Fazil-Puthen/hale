@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation_screen.dart';
-import 'package:hale/Presentation/login_or_signup/auth_bloc/auth_bloc.dart';
 import 'package:hale/Presentation/login_or_signup/login_screen.dart';
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 

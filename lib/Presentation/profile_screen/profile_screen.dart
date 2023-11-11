@@ -17,7 +17,7 @@ class ProfilePage extends StatelessWidget {
         ),
         // leading: DrawerWidget(screewidth: screenwidth*0.5, 
         // screenheight: screenheight),
-        title: Image.asset('assets/Hale.png',scale:4,),
+        title: Image.asset(hale,scale:4,),
         centerTitle: true,
       ),
       body: Container(

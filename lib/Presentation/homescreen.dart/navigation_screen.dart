@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hale/Presentation/cartpage/bloc/cart_bloc.dart';
 import 'package:hale/Presentation/cartpage/cart_screen.dart';
 import 'package:hale/Presentation/common_widgets/constants.dart';
 import 'package:hale/Presentation/homescreen.dart/bloc/home_bloc.dart';
@@ -28,10 +29,12 @@ class HomeScreen extends StatelessWidget {
             headerSliverBuilder: (context, innerBoxIsScrolled) {
               return [
                  SliverAppBar(
-                  actions: [GestureDetector(onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>CartPage()));
+                  actions: [InkWell(onTap: () {
+                      context.read<CartBloc>().add(Cartfetchevent(userid: userid));
+                    // Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>CartPage()));
                   },
-                    child: const Icon(Icons.shopping_cart_outlined)),wbox],
+                   
+                      child: const Icon(Icons.shopping_cart_outlined)),wbox],
            
                   // leading: Icon(Icons.menu),
                   title: const Image(height: 100,

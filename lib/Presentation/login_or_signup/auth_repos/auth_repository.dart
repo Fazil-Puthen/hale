@@ -6,17 +6,16 @@ class AuthReopsitoy{
 
   Future<bool> signup({required email,required password,required name,required phone})async{
     try {
-      await Future.delayed(Duration(seconds: 3));
-        await FirebaseFirestore.instance.collection('users').doc().set({
-      'Name':name,
-      'Phone':phone,
-      'Mail':email,
-    });
   await fire.createUserWithEmailAndPassword(
     email: email,
     password: password,
   );
-  print('tried at authrepository');
+     await Future.delayed(Duration(seconds: 3));
+        await FirebaseFirestore.instance.collection('users').doc(email).set({
+      'Name':name,
+      'Phone':phone,
+      'Mail':email,
+    });
   return true;
 } 
 on FirebaseAuthException catch (e) {

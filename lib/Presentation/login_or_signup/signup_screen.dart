@@ -70,6 +70,7 @@ class SignUp extends StatelessWidget {
                         {
                           return 'Please enter your name';
                         }
+                        else{validateName(value);}
                       },
                       text: 'Name',
                       keyboard: TextInputType.name,
@@ -86,6 +87,9 @@ class SignUp extends StatelessWidget {
                               {
                                 return 'Please enter phone number';
                               }
+                              else if(value.length<10){
+                                return 'Phone number must have 10 numbers';
+                              }
                             },
                             text: 'Phone',
                             keyboard: TextInputType.number,
@@ -96,6 +100,9 @@ class SignUp extends StatelessWidget {
                               if(value==null||value.isEmpty)
                               {
                                 return 'Email is mandatory';
+                              }
+                              else if(!value.contains('@')){
+                                return 'Not a valid email';
                               }
                             },
                             text: 'Email',
@@ -121,10 +128,10 @@ class SignUp extends StatelessWidget {
                     loginnbox,
                         BlocListener<AuthBloc, AuthState>(
                         listener: (context, state) {
-                          if(state is Loadingstate){
+                          if(state is SignupLoadingstate){
                             showDialog(context: context,
                             builder:(context){
-                              return const Center(child:CircularProgressIndicator(),);
+                              return Center(child:CircularProgressIndicator(color: pinkcolor,),);
                             });
                           }
                           else if(state is SigninSuccess){
@@ -132,7 +139,10 @@ class SignUp extends StatelessWidget {
                             pushAndRemoveUntil(
                               MaterialPageRoute(builder: (ctx)=> HomeScreen()), (route) => false);
                           }
-                          else if(state is Autherror){
+                          else if(state is SignupAutherror){
+                            emailcontroller.clear();
+                            passwordcontroller.clear();
+                            Navigator.of(context).pop();
                             errorsnackbar('Email or Password not valid', context);
                           }
                         },

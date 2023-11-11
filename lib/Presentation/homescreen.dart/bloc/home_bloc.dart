@@ -24,13 +24,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> navigationhandler(Navigationwidgetchangeevent event, Emitter<HomeState> emit)async {
     emit(Navigationchangestate(index:event.index));
-    final result=await FirebaseFirestore.instance.collection('products').get();
-    List<String> docid=result.docs.map((DocumentSnapshot doc) =>doc.id ).toList();
-    print(docid);
-    final one=docid[0];
-    // if(result.docs[4]['category']==event.category){
-    //   debugPrint('this is the category ${result.docs[4]}');
-    // }
-    // print('the result from document ${result}');
+ 
   }
 }

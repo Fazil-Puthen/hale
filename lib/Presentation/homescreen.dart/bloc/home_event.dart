@@ -7,6 +7,6 @@ class HomeInitevent extends HomeEvent{}
 
 class Navigationwidgetchangeevent extends HomeEvent{
   final int index;
-  final String? category;
-  Navigationwidgetchangeevent({required this.index,this.category});
+  Navigationwidgetchangeevent({required this.index});
 }
+
