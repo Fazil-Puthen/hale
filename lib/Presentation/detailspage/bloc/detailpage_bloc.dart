@@ -37,17 +37,34 @@ class DetailpageBloc extends Bloc<DetailpageEvent, DetailpageState> {
 
   FutureOr<void> addtocarthandler(Addtocartevent event, Emitter<DetailpageState> emit) {
     final firestore=FirebaseFirestore.instance;
+    final data=event.productdata;
     final maincollection=firestore.collection('users');
    if(event.addto==Addto.cart){
       final usercart=maincollection.doc(event.userid).collection('cart').doc(event.productdata.name).set(
       {
-         'name':event.productdata.name 
+         'name':data.name,
+         'brand':data.brand,
+         'category':data.category,
+         'description':data.description,
+         'imageurl':data.imageurl,
+         'price':data.price,
+         'quantityprice':data.price,
+         'quantity':data.quantitiy,
+         'cartquantity':1,
+
       }
     );
    }
    else if(event.addto==Addto.wishlist){
     maincollection.doc(event.userid).collection('wishlist').doc(event.productdata.name).set({
-      'name':event.productdata.name
+       'name':data.name,
+         'brand':data.brand,
+         'category':data.category,
+         'description':data.description,
+         'imageurl':data.imageurl,
+         'price':data.price,
+         'quantity':data.quantitiy,
+         'cartquantity':1,
     });
    }
 

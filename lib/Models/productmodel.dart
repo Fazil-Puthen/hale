@@ -6,6 +6,8 @@ class Productmodel{
   final int price;
   final int quantitiy;
   final List<dynamic> imageurl;
+  int? cartquantity;
+  int? quantitypricechange;
 
   Productmodel({
     required this.brand,
@@ -15,5 +17,7 @@ class Productmodel{
     required this.price,
     required this.quantitiy,
     required this.imageurl,
+    this.cartquantity,
+    this.quantitypricechange,
   }) ;
 }

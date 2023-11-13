@@ -30,8 +30,10 @@ class HomeScreen extends StatelessWidget {
               return [
                  SliverAppBar(
                   actions: [InkWell(onTap: () {
+                    print('cart fetch event calling');
+                    print('this is user :$userid');
                       context.read<CartBloc>().add(Cartfetchevent(userid: userid));
-                    // Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>CartPage()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>CartPage()));
                   },
                    
                       child: const Icon(Icons.shopping_cart_outlined)),wbox],

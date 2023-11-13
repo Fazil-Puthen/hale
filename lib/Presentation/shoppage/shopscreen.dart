@@ -32,6 +32,7 @@ class Shoppage extends StatelessWidget {
         ],
       ),
       body: BlocBuilder<ShoppageBloc, ShoppageState>(
+        buildWhen: (previous, current) => current is CategorylistsuccessState,
         builder: (context, state) {
           //success state
           if (state is CategorylistsuccessState) {

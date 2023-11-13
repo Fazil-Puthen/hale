@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:hale/Presentation/cartpage/bloc/cart_bloc.dart';
+import 'package:hale/Presentation/cartpage/bloc/quantity_bloc.dart';
 import 'package:hale/Presentation/cartpage/cart_screen.dart';
 import 'package:hale/Presentation/detailspage/bloc/detailpage_bloc.dart';
 import 'package:hale/Presentation/detailspage/details_screen.dart';
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context)=>HomeBloc()),
         BlocProvider(create: (context) => ShoppageBloc()),
         BlocProvider(create: (context) => DetailpageBloc()),
-        BlocProvider(create: (context) => CartBloc(),) ],
+        BlocProvider(create: (context) => CartBloc(),),
+        BlocProvider(create: (context) => QuantityBloc(),)],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
@@ -47,7 +49,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home:Splashscreen(),
+        home:HomeScreen(),
       ),
     );
   }

@@ -6,7 +6,7 @@ import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/saved_sli
 import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/shop_sliver_body.dart';
 
 
-String userid='12323';
+String userid='fazilkdr@gmail.com';
 final cardfont=GoogleFonts.aBeeZee(fontSize: 14,fontWeight:FontWeight.w400,color: Colors.black);
 final textfont=GoogleFonts.aBeeZee(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.black);
 final errorfont=GoogleFonts.aBeeZee(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.red);
