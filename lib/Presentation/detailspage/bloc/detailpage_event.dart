@@ -7,6 +7,7 @@ sealed class DetailpageEvent {}
  enum Addto{
     cart,
     wishlist,
+    initialcheck,
    }
 
 class DetailedviewEvent extends DetailpageEvent{

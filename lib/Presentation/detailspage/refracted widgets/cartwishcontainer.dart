@@ -5,14 +5,16 @@ import 'package:hale/Presentation/common_widgets/constants.dart';
 import 'package:hale/Presentation/detailspage/bloc/detailpage_bloc.dart';
 
 class bottomcontainer extends StatelessWidget {
-  final Icon icon;
+  final IconData icon;
   final Productmodel productdata;
   final Addto cartorlist;
+  final Color color;
   const bottomcontainer({
     super.key,
     required this.icon,
     required this.productdata,
     required this.cartorlist,
+    required this.color,
   });
 
   @override
@@ -28,13 +30,14 @@ class bottomcontainer extends StatelessWidget {
         width: 40,
         height: double.maxFinite,
         decoration: BoxDecoration(
+          // color: Colors.white,
             border: Border.all(),
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(10),
                 bottomRight: Radius.circular(10),
                 bottomLeft: Radius.circular(10))),
         child: Center(
-          child: icon,
+          child: Icon(icon,size: 20,color:color,),
         ),
       ),
     );

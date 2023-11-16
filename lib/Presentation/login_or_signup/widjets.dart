@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hale/Presentation/common_widgets/constants.dart';
 
 
  const  loginnbox = SizedBox(
@@ -69,12 +70,18 @@ class ContainerButton extends StatelessWidget {
     required this.heading,
     required this.color,
     required this.onTap,
+    // required this.size,
+    // required this.colors,
+    // required this.weight,
   });
 
   final double screenwidth;
   final double screenheight;
   final String heading;
   final Color color;
+  // final double size;
+  // final Color colors;
+  // final FontWeight weight;
   final Function()? onTap;
 
   @override
@@ -86,7 +93,9 @@ class ContainerButton extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10), color:color),
         child: Center(
-          child: Text(heading),
+          child: Text(heading,
+          // style: detailfont(size, colors, FontWeight.w100),
+          ),
         ),
       ),
     );

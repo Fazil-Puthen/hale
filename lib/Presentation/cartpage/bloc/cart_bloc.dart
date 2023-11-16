@@ -22,7 +22,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   List<Productmodel> cartlist=[];
 
   FutureOr<void> cartfetchhandler(Cartfetchevent event, Emitter<CartState> emit) async{
+    emit(Cartloadingstate());
     cartlist.clear();
+    int totalprice=0;
     final firestore=FirebaseFirestore.instance;
     final usercollection=await firestore.collection('users').doc(event.userid).collection('cart').get();
     for(var document in usercollection.docs){
@@ -38,12 +40,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
      imageurl: data['imageurl'],
      cartquantity:data['cartquantity'],
      quantitypricechange: data['quantityprice']);
-     
-     
 
+    totalprice=totalprice+data['quantityprice'] as int;
+     
      cartlist.add(cartproduct);
     }
-    emit(CartsuccesState(cartproduct: cartlist));
+    print(totalprice);
+    emit(CartsuccesState(cartproduct: cartlist,total: totalprice));
     
   }
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hale/Presentation/Address%20page/address_screen.dart';
+import 'package:hale/Presentation/Address%20page/bloc/adress_bloc.dart';
 import 'package:hale/Presentation/common_widgets/constants.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/refracted_widgets/drawer_items.dart';
 import 'package:hale/Presentation/login_or_signup/auth_bloc/auth_bloc.dart';
@@ -45,7 +47,7 @@ class DrawerWidget extends StatelessWidget {
                       ),
                       box,
                       Text(
-                        'fazilkdr@gmail.com',
+                        userid,
                         style: textfont,
                       ),
                     ],
@@ -70,8 +72,13 @@ class DrawerWidget extends StatelessWidget {
                     icon: Icon(Icons.face_5_outlined), label: 'Profile'),
               ),
               dbox,
-              const DrawerItems(icon: Icon(Icons.near_me), label: 'Adress'),
+              //Adress
+              GestureDetector(
+                onTap:(){ context.read<AdressBloc>().add(AdressfetchEvent());
+                Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>AdressPage()));},
+                child: const DrawerItems(icon: Icon(Icons.near_me), label: 'Adress')),
               dbox,
+              //Signout
               BlocListener<AuthBloc, AuthState>(
                 listener: (context, state) {
                   if(state is Signoutstate){

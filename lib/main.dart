@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:hale/Presentation/Address%20page/bloc/adress_bloc.dart';
 import 'package:hale/Presentation/cartpage/bloc/cart_bloc.dart';
 import 'package:hale/Presentation/cartpage/bloc/quantity_bloc.dart';
 import 'package:hale/Presentation/cartpage/cart_screen.dart';
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ShoppageBloc()),
         BlocProvider(create: (context) => DetailpageBloc()),
         BlocProvider(create: (context) => CartBloc(),),
-        BlocProvider(create: (context) => QuantityBloc(),)],
+        BlocProvider(create: (context) => QuantityBloc(),),
+        BlocProvider(create: (context) => AdressBloc())],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',

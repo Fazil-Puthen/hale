@@ -6,17 +6,30 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:hale/Presentation/detailspage/bloc/detailpage_bloc.dart';
 import 'package:hale/Presentation/detailspage/refracted%20widgets/cartwishcontainer.dart';
 
-class DetailsScreen extends StatelessWidget {
+class DetailsScreen extends StatefulWidget {
   final Productmodel productdata;
   DetailsScreen({super.key, required this.productdata});
 
-  // bool clicked=false;
+  @override
+  State<DetailsScreen> createState() => _DetailsScreenState();
+}
 
+class _DetailsScreenState extends State<DetailsScreen> {
+  @override
+  void initState() {
+    context.read<DetailpageBloc>().add(Addtocartevent(
+        productdata: widget.productdata,
+        userid: userid,
+        addto: Addto.initialcheck));
+    super.initState();
+  }
+
+  // bool clicked=false;
   @override
   Widget build(BuildContext context) {
     final screenwidth = MediaQuery.of(context).size.width;
     final screenheight = MediaQuery.of(context).size.height;
-    final List<dynamic> imagelist = productdata.imageurl;
+    final List<dynamic> imagelist = widget.productdata.imageurl;
     print('the length ${imagelist.length}');
     return Scaffold(
       appBar: AppBar(
@@ -24,7 +37,7 @@ class DetailsScreen extends StatelessWidget {
         elevation: 0,
         // leading: Image.asset(hale),
         title: Text(
-          productdata.category.toString(),
+          widget.productdata.category.toString(),
           style: cardfont,
         ),
         centerTitle: true,
@@ -65,18 +78,18 @@ class DetailsScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    productdata.name,
+                    widget.productdata.name,
                     style: headingfont,
                   ),
                   box,
                   Text(
-                    'Rs.${productdata.price} only/-',
+                    'Rs.${widget.productdata.price} only/-',
                     style: detailfont(15, Colors.red, FontWeight.w200),
                   ),
                   box,
                   Wrap(children: [
                     Text(
-                      productdata.description,
+                      widget.productdata.description,
                       style: textfont,
                     )
                   ]),
@@ -137,25 +150,36 @@ class DetailsScreen extends StatelessWidget {
           children: [
             Row(
               children: [
-                bottomcontainer(
-                  icon: const Icon(
-                    Icons.shopping_bag_outlined,
-                    size: 20,
-                    color: Colors.cyan,
-                  ),
-                  productdata: productdata,
-                  cartorlist:Addto.wishlist,
+                BlocBuilder<DetailpageBloc, DetailpageState>(
+                  builder: (context, state) {
+                    if (state is Buttonclickedstate) {
+                      return bottomcontainer(
+                        icon: Icons.heart_broken,
+                        productdata: widget.productdata,
+                        cartorlist: Addto.wishlist,
+                        color: state.wishclicked! ? Colors.red : Colors.white,
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
                 ),
                 const SizedBox(
                   width: 15,
                 ),
-                bottomcontainer(
-                  icon:const  Icon(
-                    Icons.shopping_cart_outlined,
-                    size: 20,
-                  ),
-                  productdata: productdata,
-                  cartorlist:Addto.cart,
+                BlocBuilder<DetailpageBloc, DetailpageState>(
+                  builder: (context, state) {
+                   if(state is Buttonclickedstate){
+                    return bottomcontainer(
+                      icon: Icons.shopping_bag_outlined,
+                      productdata: widget.productdata,
+                      cartorlist: Addto.cart,
+                      color:state.cartclicked!? Colors.red:Colors.white,
+                    );}
+                    else{
+                      return Container();
+                    }
+                  },
                 ),
               ],
             ),
@@ -166,5 +190,3 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 }
-
-

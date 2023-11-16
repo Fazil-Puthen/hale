@@ -7,9 +7,12 @@ final class CartInitial extends CartState {}
 
 class CartsuccesState extends CartState{
   final List<Productmodel> cartproduct;
-  CartsuccesState({required this.cartproduct});
+  final int total;
+  CartsuccesState({required this.cartproduct,
+  required this.total});
 }
 
+class Cartloadingstate extends CartState{}
 // class Quantityaddedestate extends CartState{
 //   final int addedquantity;
 //   Quantityaddedestate({required this.addedquantity});
