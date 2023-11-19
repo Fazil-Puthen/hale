@@ -37,6 +37,9 @@ class AdressPage extends StatelessWidget {
             if(state is Adressloadingstate){
               return const Center(child: CircularProgressIndicator(),);
             }
+            else if(state is Adressemptystate){
+              return const Center(child: Text('No adress added'),);
+            }
             else if(state is AdressamangeState){
               final list=state.adresslist;
             return ListView.builder(itemCount: list.length,
@@ -84,8 +87,9 @@ class AdressPage extends StatelessWidget {
                     },
                       child: const Icon(Icons.edit,size: 20,color: Colors.brown,)),
                     wbox,
-                    GestureDetector(onTap: () {
-                      context.read<AdressBloc>().add(AdressdeleteEvent(index: index));
+                    GestureDetector(onTap: ()async {
+                      return showDialog(context: context,
+                       builder:(context) => Deletealert(index: index,),);
                     },
                       child: const Icon(Icons.delete_outline,size: 20,color: Colors.red,))],)],),],),
                 ),),
@@ -99,6 +103,27 @@ class AdressPage extends StatelessWidget {
       ),
 
     );
+  }
+}
+
+class Deletealert extends StatelessWidget {
+  final int index;
+  const Deletealert({
+    super.key,
+    required this.index
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(title: Text('Confirm Delete?',style: detailfont(15,Colors.black,FontWeight.w500),),
+    content: Row(mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+     TextButton(onPressed: (){Navigator.pop(context);},
+     child:Text('Cancel',style: detailfont(13,Colors.blue,FontWeight.w300))),
+     TextButton(onPressed: (){
+       context.read<AdressBloc>().add(AdressdeleteEvent(index: index));
+       Navigator.pop(context);},
+      child:Text('Delete',style: detailfont(13,Colors.red,FontWeight.w300)))],),);
   }
 }
 

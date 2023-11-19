@@ -4,17 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:hale/Presentation/Address%20page/bloc/adress_bloc.dart';
 import 'package:hale/Presentation/cartpage/bloc/cart_bloc.dart';
 import 'package:hale/Presentation/cartpage/bloc/quantity_bloc.dart';
-import 'package:hale/Presentation/cartpage/cart_screen.dart';
 import 'package:hale/Presentation/detailspage/bloc/detailpage_bloc.dart';
-import 'package:hale/Presentation/detailspage/details_screen.dart';
 import 'package:hale/Presentation/homescreen.dart/bloc/home_bloc.dart';
+import 'package:hale/Presentation/homescreen.dart/bloc/homewidgetcontrol_bloc.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation_screen.dart';
 import 'package:hale/Presentation/login_or_signup/auth_bloc/auth_bloc.dart';
-import 'package:hale/Presentation/login_or_signup/login_screen.dart';
-import 'package:hale/Presentation/profile_screen/profile_screen.dart';
 import 'package:hale/Presentation/shoppage/bloc/shoppage_bloc.dart';
-import 'package:hale/Presentation/shoppage/shopscreen.dart';
-import 'package:hale/Presentation/splashscreen/splash_screen.dart';
 import 'firebase_options.dart';
 
 
@@ -43,7 +38,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => DetailpageBloc()),
         BlocProvider(create: (context) => CartBloc(),),
         BlocProvider(create: (context) => QuantityBloc(),),
-        BlocProvider(create: (context) => AdressBloc())],
+        BlocProvider(create: (context) => AdressBloc()),
+        BlocProvider(create: (context) => HomewidgetcontrolBloc())],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',

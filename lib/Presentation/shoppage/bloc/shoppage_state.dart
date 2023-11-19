@@ -11,3 +11,5 @@ class CategorylistsuccessState extends ShoppageState{
 }
 
 class CategorylistfailedState extends ShoppageState{}
+
+class Categoryloadingstate extends ShoppageState{}

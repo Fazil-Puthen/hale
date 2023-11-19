@@ -47,6 +47,22 @@ TextStyle detailfont(double size,Color color,FontWeight weight)
   
 }
 
+//loading state widget
+class Loadingstatewidget extends StatelessWidget {
+  final String text;
+  const Loadingstatewidget({
+    super.key,
+    required this.text
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return  Center(child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [const CircularProgressIndicator(),Text(text,
+    style: detailfont(15,Colors.black,FontWeight.w300),)],),);
+  }
+}
+
 
 //error widget
 class errorwidget extends StatelessWidget {

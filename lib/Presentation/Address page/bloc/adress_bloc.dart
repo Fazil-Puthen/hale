@@ -61,7 +61,11 @@ class AdressBloc extends Bloc<AdressEvent, AdressState> {
     adress.delete();
     adresslist.removeAt(event.index);
 
-    emit(AdressamangeState(adresslist: adresslist));
+      if(adresslist.isNotEmpty){
+    emit(AdressamangeState(adresslist: adresslist));}
+    else {
+      emit(Adressemptystate());
+    }
   }
 
   FutureOr<void> adressfetchhandler(AdressfetchEvent event, Emitter<AdressState> emit) async{
@@ -77,6 +81,10 @@ class AdressBloc extends Bloc<AdressEvent, AdressState> {
 
        adresslist.add(newlist);
     }
-    emit(AdressamangeState(adresslist: adresslist));
+    if(adresslist.isNotEmpty){
+    emit(AdressamangeState(adresslist: adresslist));}
+    else {
+      emit(Adressemptystate());
+    }
   }
 }

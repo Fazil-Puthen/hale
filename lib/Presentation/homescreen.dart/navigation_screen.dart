@@ -4,6 +4,7 @@ import 'package:hale/Presentation/cartpage/bloc/cart_bloc.dart';
 import 'package:hale/Presentation/cartpage/cart_screen.dart';
 import 'package:hale/Presentation/common_widgets/constants.dart';
 import 'package:hale/Presentation/homescreen.dart/bloc/home_bloc.dart';
+import 'package:hale/Presentation/homescreen.dart/bloc/homewidgetcontrol_bloc.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/refracted_widgets/drawer.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/refracted_widgets/navigation_bar.dart';
 
@@ -22,6 +23,9 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         bottomNavigationBar: NavigatioBarCurve(
           ontabtapped: (index) {
+            if(index==3){
+              context.read<HomewidgetcontrolBloc>().add(Wishfetchevent());
+            }
           context.read<HomeBloc>().add(Navigationwidgetchangeevent(index: index));
           },
         ),
@@ -51,6 +55,7 @@ class HomeScreen extends StatelessWidget {
             body:BlocBuilder<HomeBloc, HomeState>(
               builder: (context, state) {
                 if(state is Navigationchangestate){
+                  print('this is the widget change ${state.index}');
                   // currentindex=state.index;
                 return navigationwidgets[state.index];}
                  else{return navigationwidgets[0];}

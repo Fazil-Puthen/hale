@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hale/Models/productmodel.dart';
 import 'package:hale/Presentation/cartpage/bloc/cart_bloc.dart';
 import 'package:hale/Presentation/cartpage/refracted%20widgets/cartcontainer.dart';
+import 'package:hale/Presentation/chekoutpage/checkout.dart';
 import 'package:hale/Presentation/common_widgets/constants.dart';
 import 'package:hale/Presentation/login_or_signup/widjets.dart';
 
@@ -93,7 +94,9 @@ class CartPage extends StatelessWidget {
                       screenheight: screenheight * 0.07,
                       heading: 'checkout',
                       color: pinkcolor,
-                      onTap: () {})
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (ctx)=>Checkout()));
+                      })
                 ],
               );}
               else{

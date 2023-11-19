@@ -142,7 +142,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
         // shape: CircularNotchedRectangle(),
         // notchMargin: 5,
         height: screenheight * 0.1,
-        clipBehavior: Clip.none,
+        // clipBehavior: Clip.none,
         padding: EdgeInsets.all(20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -153,6 +153,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 BlocBuilder<DetailpageBloc, DetailpageState>(
                   builder: (context, state) {
                     if (state is Buttonclickedstate) {
+                      // errorsnackbar('added to wishlist', context);
                       return bottomcontainer(
                         icon: Icons.heart_broken,
                         productdata: widget.productdata,

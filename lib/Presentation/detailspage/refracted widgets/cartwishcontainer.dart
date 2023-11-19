@@ -21,10 +21,8 @@ class bottomcontainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print('this is usermail $userid');
-        context
-            .read<DetailpageBloc>()
-            .add(Addtocartevent(productdata: productdata, userid: userid,addto:cartorlist));
+        context.read<DetailpageBloc>()
+        .add(Addtocartevent(productdata: productdata, userid: userid,addto:cartorlist));
       },
       child: Container(
         width: 40,

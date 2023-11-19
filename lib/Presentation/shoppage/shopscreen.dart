@@ -32,10 +32,13 @@ class Shoppage extends StatelessWidget {
         ],
       ),
       body: BlocBuilder<ShoppageBloc, ShoppageState>(
-        buildWhen: (previous, current) => current is CategorylistsuccessState,
+        // buildWhen: (previous, current) => current is CategorylistsuccessState,
         builder: (context, state) {
+          if(state is Categoryloadingstate){
+            return const Center(child: CircularProgressIndicator(),);
+          }
           //success state
-          if (state is CategorylistsuccessState) {
+         else if (state is CategorylistsuccessState) {
             List<Productmodel> productlist = state.categorylist;
             return Container(
                 width: screenwidth,

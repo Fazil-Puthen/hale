@@ -18,9 +18,10 @@ class ShoppageBloc extends Bloc<ShoppageEvent, ShoppageState> {
     final List<Productmodel> products=[];
 
     Future<void> categoryelectedhandler(Homecategoryselectedevent event, Emitter<ShoppageState> emit)async {
+      emit(Categoryloadingstate());
     products.clear();
     final result=await FirebaseFirestore.instance.collection('products').get();
-    List<String>? docid=result.docs.map((DocumentSnapshot doc) =>doc.id ).toList();
+    List<String> docid=result.docs.map((DocumentSnapshot doc) =>doc.id ).toList();
     for(var id in docid){
       final document=result.docs.firstWhere((doc) => doc.id==id);
       if(document['category']==event.category){

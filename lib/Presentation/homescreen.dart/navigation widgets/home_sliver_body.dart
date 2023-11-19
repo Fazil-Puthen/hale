@@ -58,7 +58,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                       }
         
                      else if (snapshot.hasData) {
-                      print('No data availabale');
+                      print(' data availabale');
                         return ListView.separated(
                           itemCount: snapshot.data.docs.length,
                           scrollDirection: Axis.horizontal,

@@ -13,3 +13,5 @@ class AdressamangeState extends AdressState{
 }
 
 class Adressloadingstate extends AdressState{}
+
+class Adressemptystate extends AdressState{}
