@@ -94,6 +94,7 @@ class CartContainer extends StatelessWidget {
                               productid: cartlist[index].name,
                               cartlist: cartlist,
                               index: index));
+                              context.read<CartBloc>().add(Cartfetchevent(userid: userid));
                         },
                         child: const Icon(
                           Icons.delete_outline,
@@ -132,6 +133,7 @@ class CartContainer extends StatelessWidget {
                               productid: cartlist[index].name,
                               cartlist: cartlist,
                               index: index));
+                               context.read<CartBloc>().add(Cartfetchevent(userid: userid));
                         },
                         child: const Icon(
                           Icons.add,

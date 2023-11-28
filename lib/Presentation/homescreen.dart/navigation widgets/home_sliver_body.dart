@@ -7,6 +7,7 @@ import 'package:hale/Presentation/detailspage/details_screen.dart';
 import 'package:hale/Presentation/homescreen.dart/bloc/home_bloc.dart';
 import 'package:hale/Presentation/shoppage/bloc/shoppage_bloc.dart';
 import 'package:hale/Presentation/shoppage/shopscreen.dart';
+import 'package:lottie/lottie.dart';
 
 
 class HomeWidget extends StatefulWidget {
@@ -50,9 +51,19 @@ class _HomeWidgetState extends State<HomeWidget> {
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         print('waiting for connection');
-                        return const Center(child: CircularProgressIndicator());
+                        return  Center(
+                  child: SizedBox(width: 50,
+                  height: 50,
+                    child: Lottie.asset('assets/animation/yellow.json',
+                    height: 50,
+                    width: 50,
+                    repeat: true,
+                    // reverse: true,
+                    fit: BoxFit.contain),
+                  ),
+                );
                       }
-                      else if(snapshot.connectionState==ConnectionState.none){
+                      else if(snapshot.connectionState==ConnectionState.done){
                         print('connection state none');
                         return const Center(child: Text('Bad network connection'),);
                       }

@@ -3,9 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hale/Models/productmodel.dart';
 import 'package:hale/Presentation/cartpage/bloc/cart_bloc.dart';
 import 'package:hale/Presentation/cartpage/refracted%20widgets/cartcontainer.dart';
-import 'package:hale/Presentation/chekoutpage/checkout.dart';
+import 'package:hale/Presentation/chekoutpage/bloc/adresscheckout_bloc.dart';
+import 'package:hale/Presentation/chekoutpage/bloc/checkout_bloc.dart';
+import 'package:hale/Presentation/chekoutpage/checkoutscreen.dart';
 import 'package:hale/Presentation/common_widgets/constants.dart';
 import 'package:hale/Presentation/login_or_signup/widjets.dart';
+
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -39,10 +42,14 @@ class CartPage extends StatelessWidget {
           child: BlocBuilder<CartBloc, CartState>(
             builder: (context, state) {
               if (state is Cartloadingstate) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (state is CartsuccesState) {
+                return const Loadingwidget();
+              } 
+                else if(state is CartEmptystate){
+                return Center(child: Text('cart is empty',
+                style: detailfont(20,Colors.black,FontWeight.w300)),);
+              }
+              //cart build
+              else if (state is CartsuccesState) {
                 final List<Productmodel> cartlist = state.cartproduct;
                 return ListView.separated(
                     itemBuilder: (context, index) {
@@ -69,43 +76,68 @@ class CartPage extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-          child: BlocBuilder<CartBloc, CartState>(
+          child: 
+          //checkout section
+          BlocBuilder<CartBloc, CartState>(
             builder: (context, state) {
-              if(state is CartsuccesState){
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Total',
-                          style:
-                              detailfont(15, Colors.black, FontWeight.normal),
-                        ),
-                        Text(
-                          '₹ ${state.total}',
-                          style: detailfont(15, Colors.red, FontWeight.w600),
-                        )
-                      ]),
-                  box,
-                  ContainerButton(
-                      screenwidth: screenwidth * 0.8,
-                      screenheight: screenheight * 0.07,
-                      heading: 'checkout',
-                      color: pinkcolor,
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (ctx)=>Checkout()));
-                      })
-                ],
-              );}
+              if(state is CartEmptystate){
+                return  Center(child:  Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: ContainerButton(
+                            screenwidth: screenwidth * 0.8,
+                            screenheight: screenheight * 0.07,
+                            heading: 'Add to cart',
+                            color: pinkcolor,
+                            onTap: () {
+                              Navigator.pop(context);
+                            }),
+                ),);
+              }
+              //cart total
+              else if(state is CartsuccesState){
+              return 
+             Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Total',
+                              style:
+                                  detailfont(15, Colors.black, FontWeight.normal),
+                            ),
+                            Text(
+                              '₹ ${state.total}',
+                              style: detailfont(15, Colors.red, FontWeight.w600),
+                            )
+                          ]),
+                      box,
+                      ContainerButton(
+                          screenwidth: screenwidth * 0.8,
+                          screenheight: screenheight * 0.07,
+                          heading: 'checkout',
+                          color: pinkcolor,
+                          onTap: () {
+                            context.read<AdresscheckoutBloc>().add(AdressinitEvent(adressindex: 0));
+                            context.read<CheckoutBloc>().add(CheckoutInitevent());
+                            Navigator.push(context, MaterialPageRoute(builder: (ctx)=>Checkout()));
+                          })
+                    ],
+                  );
+                
+             
+              }
               else{
                 return Container();
               }
             },
           ),
-        ),
+        )
+        
       ]),
     );
   }
 }
+
+

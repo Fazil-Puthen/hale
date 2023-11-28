@@ -21,19 +21,19 @@ class QuantityBloc extends Bloc<QuantityEvent, QuantityState> {
 
   FutureOr<void> qunatityhandler(Quantityaddordelete event, Emitter<QuantityState> emit) async{
     int change=0;
-    int quantitypricechange=0;
+    int qapricechange=0;
     final firestore=FirebaseFirestore.instance;
     final quantiychange=firestore.collection('users').doc(userid).collection('cart').doc(event.productid);
     
     if(event.quantitycontrol==Addordelete.add){
       change=event.quantitiy+1;
-      quantitypricechange=(event.cartlist[event.index].quantitypricechange!+event.cartlist[event.index].price);
+      qapricechange=(event.cartlist[event.index].quantitypricechange!+event.cartlist[event.index].price);
       print('this is addordel add $change');
     }
     else if(event.quantitycontrol==Addordelete.delete){
       if(event.quantitiy>1){
       change=event.quantitiy-1;
-      quantitypricechange=(event.cartlist[event.index].quantitypricechange!-event.cartlist[event.index].price);
+      qapricechange=(event.cartlist[event.index].quantitypricechange!-event.cartlist[event.index].price);
       print('this is addordel delete $change');}
       else{
       await quantiychange.delete();
@@ -42,10 +42,10 @@ class QuantityBloc extends Bloc<QuantityEvent, QuantityState> {
     }
     
     event.cartlist[event.index].cartquantity=change;
-    event.cartlist[event.index].quantitypricechange=quantitypricechange;
+    event.cartlist[event.index].quantitypricechange=qapricechange;
     await quantiychange.update({
       'cartquantity':change,
-      'quantityprice':quantitypricechange,
+      'quantityprice':qapricechange,
     });
     emit(Quantityaddedestate(cartlist: event.cartlist));
   }

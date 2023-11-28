@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hale/Presentation/Address%20page/bloc/adress_bloc.dart';
+import 'package:hale/Presentation/Address%20page/refracted%20widgets/deletealert.dart';
 import 'package:hale/Presentation/Address%20page/refracted%20widgets/floatingbutton.dart';
 import 'package:hale/Presentation/common_widgets/constants.dart';
 
@@ -49,7 +50,7 @@ class AdressPage extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(width: 0.5),
+                    // border: Border.all(width: 0.5),
                      color: Colors.white,
                   ),
                 width: screenwidth*0.7,
@@ -61,8 +62,8 @@ class AdressPage extends StatelessWidget {
                   children: [Column(crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                   Text(list[index].housename,style: detailfont(15,Colors.black,FontWeight.w300),),
-                  Text(list[index].place,style: detailfont(13,Colors.black,FontWeight.w200)),
-                  Text(list[index].pincode,style: detailfont(10,Colors.black,FontWeight.bold))]),
+                  Text(list[index].place,style: detailfont(13,Colors.black,FontWeight.normal)),
+                  Text(list[index].pincode,style: detailfont(10,Colors.black,FontWeight.normal))]),
                   Column(mainAxisAlignment: MainAxisAlignment.center,
                   children:
                   [Row(
@@ -106,24 +107,5 @@ class AdressPage extends StatelessWidget {
   }
 }
 
-class Deletealert extends StatelessWidget {
-  final int index;
-  const Deletealert({
-    super.key,
-    required this.index
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(title: Text('Confirm Delete?',style: detailfont(15,Colors.black,FontWeight.w500),),
-    content: Row(mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-     TextButton(onPressed: (){Navigator.pop(context);},
-     child:Text('Cancel',style: detailfont(13,Colors.blue,FontWeight.w300))),
-     TextButton(onPressed: (){
-       context.read<AdressBloc>().add(AdressdeleteEvent(index: index));
-       Navigator.pop(context);},
-      child:Text('Delete',style: detailfont(13,Colors.red,FontWeight.w300)))],),);
-  }
-}
 

@@ -14,10 +14,10 @@ class NavigatioBarCurve extends StatelessWidget {
     return CurvedNavigationBar(
         onTap:ontabtapped,
         height: 55,
-        animationDuration: Duration(milliseconds: 200),
+        animationDuration: Duration(milliseconds: 500),
         animationCurve: Curves.ease,
         backgroundColor: Colors.white,
-        color: Colors.transparent,
+        color: Colors.white,
         buttonBackgroundColor: Colors.amber.withOpacity(0.5),
         items: const [
           Icon(Icons.home_outlined),

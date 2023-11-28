@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hale/Presentation/boardingscreen/intropages.dart';
 import 'package:hale/Presentation/common_widgets/constants.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation_screen.dart';
 import 'package:hale/Presentation/login_or_signup/auth_bloc/auth_bloc.dart';
@@ -44,17 +45,17 @@ class SignUp extends StatelessWidget {
             padding: EdgeInsets.symmetric(
                 horizontal: 30, vertical: screenheight * 0.2),
             child: 
-            BlocConsumer<AuthBloc, AuthState>(
-              listener: (context, state) {
-             if(state is Autherror){
+            // BlocConsumer<AuthBloc, AuthState>(
+            //   listener: (context, state) {
+            //  if(state is Autherror){
              
-             }
-             else if(state is SignupsSuccess){
-              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (ctx)=>HomeScreen()), (route) => false);
-             }
-              },
-              builder: (context, state) {
-               return
+            //  }
+            //  else if(state is SignupSuccess){
+            //   Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (ctx)=>HomeScreen()), (route) => false);
+            //  }
+            //   },
+              // builder: (context, state) {
+              //  return
                  Column(
                   children: [
                     Align(
@@ -134,10 +135,11 @@ class SignUp extends StatelessWidget {
                               return Center(child:CircularProgressIndicator(color: pinkcolor,),);
                             });
                           }
-                          else if(state is SigninSuccess){
+                          else if(state is SignupSuccess){
+                            username=namecontroller.text;
                             Navigator.of(context).
                             pushAndRemoveUntil(
-                              MaterialPageRoute(builder: (ctx)=> HomeScreen()), (route) => false);
+                              MaterialPageRoute(builder: (ctx)=> Intropage()), (route) => false);
                           }
                           else if(state is SignupAutherror){
                             emailcontroller.clear();
@@ -173,9 +175,9 @@ class SignUp extends StatelessWidget {
                       
                     
                   ],
-                );
-              },
-            ),
+                ),
+              // },
+            // ),
           ),
         ),
       ]))),

@@ -6,6 +6,8 @@ import 'package:hale/Presentation/common_widgets/constants.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/refracted_widgets/drawer_items.dart';
 import 'package:hale/Presentation/login_or_signup/auth_bloc/auth_bloc.dart';
 import 'package:hale/Presentation/login_or_signup/login_screen.dart';
+import 'package:hale/Presentation/orderspage/bloc/orders_bloc.dart';
+import 'package:hale/Presentation/orderspage/ordersscreen.dart';
 import 'package:hale/Presentation/profile_screen/profile_screen.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -57,9 +59,15 @@ class DrawerWidget extends StatelessWidget {
                 color: Colors.black,
               ),
               dbox,
-              const DrawerItems(
-                icon: Icon(Icons.fire_truck),
-                label: 'Orders',
+              InkWell
+              (onTap: (){
+                context.read<OrdersBloc>().add(OrdersFetchevent());
+                Navigator.push(context,MaterialPageRoute(builder: (ctx)=>const Orderpage()));
+              },
+                child: const DrawerItems(
+                  icon: Icon(Icons.fire_truck),
+                  label: 'Orders',
+                ),
               ),
               dbox,
               const DrawerItems(icon: Icon(Icons.payment), label: 'Payment'),

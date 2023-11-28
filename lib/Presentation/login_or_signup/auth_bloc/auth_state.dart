@@ -13,7 +13,7 @@ class AuthInitial extends AuthState{}
 
 class EmptyFieldState extends AuthState{}
 
-class SignupsSuccess extends AuthState {}
+class SignupSuccess extends AuthState {}
 
 class SigninSuccess extends AuthState{}
 

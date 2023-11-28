@@ -23,7 +23,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
         addto: Addto.initialcheck));
     super.initState();
   }
-
   // bool clicked=false;
   @override
   Widget build(BuildContext context) {
@@ -150,10 +149,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
           children: [
             Row(
               children: [
-                BlocBuilder<DetailpageBloc, DetailpageState>(
+                BlocConsumer<DetailpageBloc, DetailpageState>(
+                  listener: (context, state){
+                    if(state is Buttonclickedstate&&state.snackbar==true){
+                      errorsnackbar(state.snaktext!, context);
+                    }
+                  },
                   builder: (context, state) {
                     if (state is Buttonclickedstate) {
-                      // errorsnackbar('added to wishlist', context);
                       return bottomcontainer(
                         icon: Icons.heart_broken,
                         productdata: widget.productdata,

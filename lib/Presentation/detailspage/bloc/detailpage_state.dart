@@ -14,12 +14,14 @@ class Detailedstate extends DetailpageState{
 }
 
 class Buttonclickedstate extends DetailpageState{
+  final bool? snackbar;
   final bool? cartclicked;
   final bool? wishclicked;
+  final String? snaktext;
   Buttonclickedstate({this.cartclicked,
-  this.wishclicked});
+  this.wishclicked,
+  this.snackbar,
+  this.snaktext});
   void prindata(){
-    print('this is cartcliked $cartclicked');
-    print('this is wishcliked $wishclicked');
   }
 }

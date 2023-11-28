@@ -4,9 +4,11 @@ import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/category_
 import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/home_sliver_body.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/saved_sliver_body.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/shop_sliver_body.dart';
+import 'package:lottie/lottie.dart';
 
 
 String userid='fazilkdr@gmail.com';
+late String username;
 final cardfont=GoogleFonts.aBeeZee(fontSize: 14,fontWeight:FontWeight.w400,color: Colors.black);
 final textfont=GoogleFonts.aBeeZee(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.black);
 final errorfont=GoogleFonts.aBeeZee(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.red);
@@ -32,10 +34,13 @@ const List<String> imagelist=[man,woman,boy,girl,sports,trek];
 const List<String> taglist=['Men','Women','Boys','Girls','Sports','Trek'];
 const List<String> heading=['Home','Category','Shop','Wishlist'];
 
+
+
 //error snackbar
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> errorsnackbar(String text,BuildContext context){
   return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),   
+    duration: Duration(seconds: 2),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),   
   content: Row(children: [const Icon(Icons.error),Text(text,style: errorfont,)],),
   behavior: SnackBarBehavior.floating,
   backgroundColor: Colors.white,));
@@ -45,6 +50,28 @@ TextStyle detailfont(double size,Color color,FontWeight weight)
 {
   return GoogleFonts.aBeeZee(fontSize: size,color:color,fontWeight: weight);
   
+}
+
+//lottie loading widget
+class Loadingwidget extends StatelessWidget {
+  const Loadingwidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: SizedBox(width: 200,
+      height: 350,
+        child: Lottie.asset('assets/animation/yellow.json',
+        height: 50,
+        width: 50,
+        repeat: true,
+        // reverse: true,
+        fit: BoxFit.contain),
+      ),
+    );
+  }
 }
 
 //loading state widget

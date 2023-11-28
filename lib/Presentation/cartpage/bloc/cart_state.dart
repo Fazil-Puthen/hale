@@ -5,6 +5,8 @@ sealed class CartState {}
 
 final class CartInitial extends CartState {}
 
+class CartEmptystate extends CartState{}
+
 class CartsuccesState extends CartState{
   final List<Productmodel> cartproduct;
   final int total;

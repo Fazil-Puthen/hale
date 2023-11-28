@@ -31,7 +31,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
        phone: event.phone);
       print('tried');
       if(success){
-        emit(SignupsSuccess());
+        emit(SignupSuccess());
       }
       else{
         emit(SignupAutherror());

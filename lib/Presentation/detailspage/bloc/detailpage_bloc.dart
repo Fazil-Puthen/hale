@@ -24,6 +24,8 @@ class DetailpageBloc extends Bloc<DetailpageEvent, DetailpageState> {
   //  bool clicked=false;
     bool cartclicked = false;
     bool wishclicked = false;
+    bool snackbar=false;
+    String snacktext='';
    final firestore=FirebaseFirestore.instance;
 
 
@@ -51,23 +53,17 @@ class DetailpageBloc extends Bloc<DetailpageEvent, DetailpageState> {
      await Future.wait([
       usercart.snapshots().first.then((DocumentSnapshot snapshot) {
         cartclicked = snapshot.exists;
-        print('inside snapshot cart $cartclicked');
       }),
       userwishlist.snapshots().first.then((DocumentSnapshot snapshot) {
         wishclicked = snapshot.exists;
-        print('inside snapshot wish $wishclicked');
       }),
     ]);
-
-    print('this is cartcliked in bloc $cartclicked');
-    print('this is wishcliked in bloc $wishclicked');
+    snackbar=false;
     }
     
   
    if(event.addto==Addto.cart){
-    print('this is inside addtocart $cartclicked');
     cartclicked=!cartclicked;
-    print('this is outside addtocart $cartclicked');
     if(cartclicked==true){
       await usercart.set(
       {
@@ -82,10 +78,14 @@ class DetailpageBloc extends Bloc<DetailpageEvent, DetailpageState> {
          'cartquantity':1,
 
       }
-    );}
+    );
+     snacktext='Added to cart';
+    }
     else if(cartclicked==false){
          await usercart.delete();
+         snacktext='Removed from cart';
     }
+    snackbar=true;
    }
   
    else if(event.addto==Addto.wishlist){
@@ -100,13 +100,20 @@ class DetailpageBloc extends Bloc<DetailpageEvent, DetailpageState> {
          'price':data.price,
          'quantity':data.quantitiy,
          'cartquantity':1,
-    });}
+    });
+    snacktext='Added to wishlist';
+    }
     else
     {
       await userwishlist.delete();
+      snacktext='Removed from wishlist';
     }
+    snackbar=true;
    }
-   emit(Buttonclickedstate(cartclicked: cartclicked, wishclicked: wishclicked));
+   emit(Buttonclickedstate(cartclicked: cartclicked,
+    wishclicked: wishclicked,
+    snackbar: snackbar,
+    snaktext: snacktext));
   }
 
 }

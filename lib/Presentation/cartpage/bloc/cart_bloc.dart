@@ -2,10 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hale/Models/productmodel.dart';
-import 'package:meta/meta.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
@@ -20,13 +18,16 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   List<Productmodel> cartlist=[];
+  int totalprice=0;
 
   FutureOr<void> cartfetchhandler(Cartfetchevent event, Emitter<CartState> emit) async{
     emit(Cartloadingstate());
+    // await Future.delayed(Duration(seconds: 5));
     cartlist.clear();
-    int totalprice=0;
+    totalprice=0;
     final firestore=FirebaseFirestore.instance;
     final usercollection=await firestore.collection('users').doc(event.userid).collection('cart').get();
+    if(usercollection.docs.isNotEmpty){
     for(var document in usercollection.docs){
      var data=document.data();
      
@@ -45,8 +46,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
      
      cartlist.add(cartproduct);
     }
-    print(totalprice);
     emit(CartsuccesState(cartproduct: cartlist,total: totalprice));
+    }
+    else{
+    emit(CartEmptystate());
+    print(totalprice);}
+    
     
   }
 

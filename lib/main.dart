@@ -2,14 +2,21 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:hale/Presentation/Address%20page/bloc/adress_bloc.dart';
+import 'package:hale/Presentation/boardingscreen/bloc/boardingbloc_bloc.dart';
+import 'package:hale/Presentation/boardingscreen/intropages.dart';
 import 'package:hale/Presentation/cartpage/bloc/cart_bloc.dart';
 import 'package:hale/Presentation/cartpage/bloc/quantity_bloc.dart';
+import 'package:hale/Presentation/chekoutpage/bloc/adresscheckout_bloc.dart';
+import 'package:hale/Presentation/chekoutpage/bloc/checkout_bloc.dart';
+import 'package:hale/Presentation/chekoutpage/checkoutscreen.dart';
 import 'package:hale/Presentation/detailspage/bloc/detailpage_bloc.dart';
 import 'package:hale/Presentation/homescreen.dart/bloc/home_bloc.dart';
 import 'package:hale/Presentation/homescreen.dart/bloc/homewidgetcontrol_bloc.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation_screen.dart';
 import 'package:hale/Presentation/login_or_signup/auth_bloc/auth_bloc.dart';
+import 'package:hale/Presentation/orderspage/bloc/orders_bloc.dart';
 import 'package:hale/Presentation/shoppage/bloc/shoppage_bloc.dart';
+import 'package:hale/Presentation/splashscreen/splash_screen.dart';
 import 'firebase_options.dart';
 
 
@@ -31,7 +38,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [ 
+      providers:[
         BlocProvider(create:(context) =>AuthBloc()),
         BlocProvider(create: (context)=>HomeBloc()),
         BlocProvider(create: (context) => ShoppageBloc()),
@@ -39,7 +46,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => CartBloc(),),
         BlocProvider(create: (context) => QuantityBloc(),),
         BlocProvider(create: (context) => AdressBloc()),
-        BlocProvider(create: (context) => HomewidgetcontrolBloc())],
+        BlocProvider(create: (context) => HomewidgetcontrolBloc()),
+        BlocProvider(create: (context) => CheckoutBloc()),
+        BlocProvider(create: (context) => AdresscheckoutBloc()),
+         BlocProvider(create: (context) => BoardingblocBloc()),
+         BlocProvider(create: (context) => OrdersBloc()),
+         ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',

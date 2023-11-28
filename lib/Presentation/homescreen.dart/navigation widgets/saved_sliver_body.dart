@@ -66,7 +66,7 @@ class WishWidget extends StatelessWidget {
               itemCount: snapshot.data!.docs.length);
         }
         else{
-          return const Center(child: Text('no data'),);
+          return Center(child: Text('Wishlist Empty',style: detailfont(20,Colors.black,FontWeight.w300),),);
         }
 
           }
