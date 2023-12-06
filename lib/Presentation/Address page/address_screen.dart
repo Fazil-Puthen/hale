@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hale/Presentation/Address%20page/bloc/adress_bloc.dart';
 import 'package:hale/Presentation/Address%20page/refracted%20widgets/deletealert.dart';
 import 'package:hale/Presentation/Address%20page/refracted%20widgets/floatingbutton.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
+import 'package:hale/common_widgets/constants.dart';
 
 class AdressPage extends StatelessWidget {
   const AdressPage({super.key});
@@ -13,7 +13,7 @@ class AdressPage extends StatelessWidget {
     final screenwidth=MediaQuery.of(context).size.width;
     final screeheight=MediaQuery.of(context).size.height;
     return  Scaffold(
-      floatingActionButton: floatingbutton(),
+      floatingActionButton: Floatingbutton(),
       appBar:AppBar(
         actions: [
           Padding(
@@ -36,7 +36,7 @@ class AdressPage extends StatelessWidget {
         child: BlocBuilder<AdressBloc, AdressState>(
           builder: (context, state) {
             if(state is Adressloadingstate){
-              return const Center(child: CircularProgressIndicator(),);
+              return const Loadingwidget();
             }
             else if(state is Adressemptystate){
               return const Center(child: Text('No adress added'),);
@@ -83,7 +83,7 @@ class AdressPage extends StatelessWidget {
                           placecontroller: placecontroller,
                           pincontroller: pincontroller,
                           index: index,
-                          adresscontrol: addordelete.update,);
+                          adresscontrol: Addordelete.update,);
                       },);
                     },
                       child: const Icon(Icons.edit,size: 20,color: Colors.brown,)),

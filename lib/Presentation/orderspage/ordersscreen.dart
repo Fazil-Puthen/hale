@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
+import 'package:hale/common_widgets/constants.dart';
 import 'package:hale/Presentation/orderspage/refracted%20widgets/orderlistcontainer.dart';
 
 class Orderpage extends StatelessWidget {

@@ -6,7 +6,7 @@ sealed class AdressState {}
 final class AdressInitial extends AdressState {}
 
 class AdressamangeState extends AdressState{
-  final List<adressmodel> adresslist;
+  final List<Adressmodel> adresslist;
   AdressamangeState({
     required this.adresslist,
   });

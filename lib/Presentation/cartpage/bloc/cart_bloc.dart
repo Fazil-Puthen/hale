@@ -49,14 +49,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     emit(CartsuccesState(cartproduct: cartlist,total: totalprice));
     }
     else{
-    emit(CartEmptystate());
-    print(totalprice);}
+    emit(CartEmptystate());}
     
     
   }
 
-  // FutureOr<void> quantityhandler(Quantityaddordelete event, Emitter<CartState> emit) {
-  //   // final firestore=firebas
-  //   emit(Quantityaddedestate(addedquantity:event.quantitiy++ ));
-  // }
 }

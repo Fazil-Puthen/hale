@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
 
 
  const  loginnbox = SizedBox(
@@ -26,7 +25,7 @@ class Textwidget extends StatelessWidget {
   final String text;
   final TextInputType keyboard;
   final TextEditingController control;
-  String? Function(String?) validator;
+  final String? Function(String?) validator;
 
 
 

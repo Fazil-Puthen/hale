@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hale/Presentation/login_or_signup/auth_repos/auth_repository.dart';
 import 'package:meta/meta.dart';
@@ -15,6 +16,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
    on<Signupevent>(signupeventhandler);
    on<SignInevent>(signineventhandler);
    on<Signoutevent>(signouteventhandler);
+   on<Passwordresetevent>(passwordresethandler);
   }
   
   //signupevent
@@ -29,7 +31,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
        password: event.password,
        name: event.name,
        phone: event.phone);
-      print('tried');
       if(success){
         emit(SignupSuccess());
       }
@@ -38,7 +39,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }}
     }   
     catch(e){
-      print('the excption was $e');
       emit(Autherror());
     }
   }
@@ -50,7 +50,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }else{
       emit(Loadingstate());
       final success=await authrepo.signin(email: event.email, password: event.password);
-      print('tried');
       if(success){
         emit(SigninSuccess());
       }
@@ -60,14 +59,24 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     }
     catch(e){
-      print('the excption was $e');
       emit(Autherror());
     }
   }
 
 
   FutureOr<void> signouteventhandler(Signoutevent event, Emitter<AuthState> emit)async {
-   final result=await authrepo.signout();
+   await authrepo.signout();
    emit(Signoutstate());
+  }
+
+  FutureOr<void> passwordresethandler(Passwordresetevent event, Emitter<AuthState> emit) async{
+    emit(PasswordexceptionState(error: 'validating....'));
+    try{
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: event.email);
+    emit(Passwordsuccesssstate());
+    }
+    on FirebaseAuthException catch(error){
+      emit(PasswordexceptionState(error: error.message.toString()));
+    }
   }
 }

@@ -3,16 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:hale/Presentation/Address%20page/bloc/adress_bloc.dart';
 import 'package:hale/Presentation/boardingscreen/bloc/boardingbloc_bloc.dart';
-import 'package:hale/Presentation/boardingscreen/intropages.dart';
 import 'package:hale/Presentation/cartpage/bloc/cart_bloc.dart';
 import 'package:hale/Presentation/cartpage/bloc/quantity_bloc.dart';
 import 'package:hale/Presentation/chekoutpage/bloc/adresscheckout_bloc.dart';
 import 'package:hale/Presentation/chekoutpage/bloc/checkout_bloc.dart';
-import 'package:hale/Presentation/chekoutpage/checkoutscreen.dart';
 import 'package:hale/Presentation/detailspage/bloc/detailpage_bloc.dart';
 import 'package:hale/Presentation/homescreen.dart/bloc/home_bloc.dart';
 import 'package:hale/Presentation/homescreen.dart/bloc/homewidgetcontrol_bloc.dart';
-import 'package:hale/Presentation/homescreen.dart/navigation_screen.dart';
 import 'package:hale/Presentation/login_or_signup/auth_bloc/auth_bloc.dart';
 import 'package:hale/Presentation/orderspage/bloc/orders_bloc.dart';
 import 'package:hale/Presentation/shoppage/bloc/shoppage_bloc.dart';
@@ -59,7 +56,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home:HomeScreen(),
+        home:Splashscreen(),
       ),
     );
   }

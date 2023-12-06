@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hale/Models/productmodel.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
+import 'package:hale/common_widgets/constants.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:hale/Presentation/detailspage/bloc/detailpage_bloc.dart';
 import 'package:hale/Presentation/detailspage/refracted%20widgets/cartwishcontainer.dart';
 
 class DetailsScreen extends StatefulWidget {
   final Productmodel productdata;
-  DetailsScreen({super.key, required this.productdata});
+  const DetailsScreen({super.key, required this.productdata});
 
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
@@ -23,18 +23,16 @@ class _DetailsScreenState extends State<DetailsScreen> {
         addto: Addto.initialcheck));
     super.initState();
   }
-  // bool clicked=false;
+
   @override
   Widget build(BuildContext context) {
     final screenwidth = MediaQuery.of(context).size.width;
     final screenheight = MediaQuery.of(context).size.height;
     final List<dynamic> imagelist = widget.productdata.imageurl;
-    print('the length ${imagelist.length}');
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 10,
         elevation: 0,
-        // leading: Image.asset(hale),
         title: Text(
           widget.productdata.category.toString(),
           style: cardfont,
@@ -55,16 +53,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
           children: [
             CarouselSlider(
                 options: CarouselOptions(
-                  // autoPlay: true,
-                  // autoPlayAnimationDuration: Duration(seconds: 10),
-                  // height: screenwidth*0.6,
                   autoPlayCurve: Curves.easeIn,
                   aspectRatio: 1.7 / 2,
                 ),
                 items: imagelist
                     .map((item) => Container(
-                        // width: screenwidth,
-                        // height: screenheight,
                         color: Colors.white,
                         child: Image.network(
                           item,
@@ -94,41 +87,41 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   ]),
                   box,
                   dbox,
-                  Text(
-                    'colors',
-                    style: headingfont,
-                  ),
-                  const Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.red,
-                      ),
-                      wbox,
-                      CircleAvatar(
-                        backgroundColor: Colors.yellow,
-                      ),
-                      wbox,
-                      CircleAvatar(
-                        backgroundColor: Colors.black,
-                      )
-                    ],
-                  ),
-                  dbox,
-                  Text(
-                    'size',
-                    style: headingfont,
-                  ),
-                  const Row(
-                    children: [
-                      Text('X'),
-                      wbox,
-                      Text('XS'),
-                      wbox,
-                      Text('S'),
-                      wbox,
-                      Text('L')
-                    ],
-                  ),
+                  // Text(
+                  //   'colors',
+                  //   style: headingfont,
+                  // ),
+                  // const Row(
+                  //   children: [
+                  //     CircleAvatar(
+                  //       backgroundColor: Colors.red,
+                  //     ),
+                  //     wbox,
+                  //     CircleAvatar(
+                  //       backgroundColor: Colors.yellow,
+                  //     ),
+                  //     wbox,
+                  //     CircleAvatar(
+                  //       backgroundColor: Colors.black,
+                  //     )
+                  //   ],
+                  // ),
+                  // dbox,
+                  // Text(
+                  //   'size',
+                  //   style: headingfont,
+                  // ),
+                  // const Row(
+                  //   children: [
+                  //     Text('X'),
+                  //     wbox,
+                  //     Text('XS'),
+                  //     wbox,
+                  //     Text('S'),
+                  //     wbox,
+                  //     Text('L')
+                  //   ],
+                  // ),
                   dbox,
                 ],
               ),
@@ -137,12 +130,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: pinkcolor,
+        color: Colors.pink.withOpacity(0.1),
         // shape: CircularNotchedRectangle(),
         // notchMargin: 5,
         height: screenheight * 0.1,
         // clipBehavior: Clip.none,
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -157,8 +150,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   },
                   builder: (context, state) {
                     if (state is Buttonclickedstate) {
-                      return bottomcontainer(
-                        icon: Icons.heart_broken,
+                      return Bottomcontainer(
+                        icon: Icons.favorite,
                         productdata: widget.productdata,
                         cartorlist: Addto.wishlist,
                         color: state.wishclicked! ? Colors.red : Colors.white,
@@ -171,23 +164,30 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 const SizedBox(
                   width: 15,
                 ),
-                BlocBuilder<DetailpageBloc, DetailpageState>(
+              ],
+            ),
+            BlocBuilder<DetailpageBloc, DetailpageState>(
                   builder: (context, state) {
                    if(state is Buttonclickedstate){
-                    return bottomcontainer(
-                      icon: Icons.shopping_bag_outlined,
-                      productdata: widget.productdata,
-                      cartorlist: Addto.cart,
-                      color:state.cartclicked!? Colors.red:Colors.white,
-                    );}
+                    return 
+                    // Bottomcontainer(
+                    //   icon: Icons.shopping_bag_outlined,
+                    //   productdata: widget.productdata,
+                    //   cartorlist: Addto.cart,
+                    //   color:state.cartclicked!? Colors.red:Colors.white,
+                    // )
+                    OutlinedButton(onPressed: (){
+                       context.read<DetailpageBloc>()
+        .add(Addtocartevent(productdata: widget.productdata, userid: userid,addto:Addto.cart));
+                    }, child:state.cartclicked!?Text('In Cart',style: detailfont(12,Colors.red,
+                     FontWeight.w300)):Text('Add to Cart',style: detailfont(12,Colors.white,
+                     FontWeight.w300),));
+                    }
                     else{
                       return Container();
                     }
                   },
                 ),
-              ],
-            ),
-            OutlinedButton(onPressed: () {}, child: const Text('Buy Now'))
           ],
         ),
       ),

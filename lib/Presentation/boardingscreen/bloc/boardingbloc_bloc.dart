@@ -16,16 +16,15 @@ class BoardingblocBloc extends Bloc<BoardingblocEvent, BoardingblocState> {
   int k=1;
 
   FutureOr<void> textchangehandler(Textchangeevent event, Emitter<BoardingblocState> emit) async{
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     late String text;
     k++;
     if(event.num%2==0){
       text='Checkout the new Arrivals';
-      print('num==${event.num}');
     }
+
     else if (event.num%2!=0){
       text='Shop from our trending collection';
-      print('num==${event.num}');
     }
     emit(Textsuccessstate(text: text,k: k));
   }

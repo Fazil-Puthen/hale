@@ -9,8 +9,7 @@ class Navigationchangestate extends HomeState{
   final int index;
   Navigationchangestate({required this.index});
 
-  void details(){
-    print('the navigation change $index');
-  }
 }
+
+
 

@@ -1,10 +1,9 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hale/Models/adressmodel.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
+import 'package:hale/common_widgets/constants.dart';
 import 'package:meta/meta.dart';
 
 part 'adress_event.dart';
@@ -19,20 +18,20 @@ class AdressBloc extends Bloc<AdressEvent, AdressState> {
     on<AdressdeleteEvent>(adressdeltehandler);
     on<AdressfetchEvent>(adressfetchhandler);
   }
-  List<adressmodel> adresslist=[];
+  List<Adressmodel> adresslist=[];
   final firestore=FirebaseFirestore.instance;
 
   FutureOr<void> adressaddhandler(AdressaddEvent event, Emitter<AdressState> emit) {
     final adress=firestore.collection('users').doc(userid).collection('adress').doc(event.place);
 
-    if(event.adresscontrol==addordelete.add){
+    if(event.adresscontrol==Addordelete.add){
     adress.set({
       'housename':event.housename,
       'place':event.place,
       'pincode':event.pincode
 
     });
-    final newadress=adressmodel(
+    final newadress=Adressmodel(
       housename: event.housename,
       place: event.place,
       pincode: event.pincode);
@@ -40,13 +39,13 @@ class AdressBloc extends Bloc<AdressEvent, AdressState> {
      adresslist.add(newadress);}
 
 
-    else if(event.adresscontrol==addordelete.update&&event.index!=null){
+    else if(event.adresscontrol==Addordelete.update&&event.index!=null){
       adress.update({
       'housename':event.housename,
       'place':event.place,
       'pincode':event.pincode
       });
-      adresslist[event.index!]=adressmodel(
+      adresslist[event.index!]=Adressmodel(
         housename: event.housename, 
         place: event.place, 
         pincode: event.pincode);
@@ -75,7 +74,7 @@ class AdressBloc extends Bloc<AdressEvent, AdressState> {
      firestore.collection('users').doc(userid).collection('adress').get();
     for(var doc in adresses.docs){
       final value=doc.data();
-      final newlist=adressmodel(housename: value['housename'],
+      final newlist=Adressmodel(housename: value['housename'],
        place: value['place'], 
        pincode: value['pincode']);
 

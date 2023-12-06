@@ -3,7 +3,7 @@ part of 'adress_bloc.dart';
 @immutable
 sealed class AdressEvent {}
 
-enum addordelete{
+enum Addordelete{
   add,
   update,
 }
@@ -12,8 +12,8 @@ class AdressaddEvent extends AdressEvent{
   final String housename;
   final String place;
   final String pincode;
-  final addordelete adresscontrol;
-  int? index;
+  final Addordelete adresscontrol;
+  final int? index;
 
   AdressaddEvent({
     required this.housename,

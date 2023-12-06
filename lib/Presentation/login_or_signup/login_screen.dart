@@ -1,12 +1,11 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation_screen.dart';
+import 'package:hale/Presentation/login_or_signup/passwordreset.dart';
 import 'package:hale/Presentation/login_or_signup/signup_screen.dart';
 import 'package:hale/Presentation/login_or_signup/widjets.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
+import 'package:hale/common_widgets/constants.dart';
 
 import 'auth_bloc/auth_bloc.dart';
 
@@ -58,10 +57,13 @@ class LoginPage extends StatelessWidget {
                             text: 'Email',
                             validator: (value) {
                               if(value==null||value.isEmpty){
-                                return 'Enter a Username';
+                                return 'Enter a Email';
                               }
                               else if(!value.contains('@')){
                                 return 'Enter a valid Email';
+                              }
+                              else{
+                                return null;
                               }
                             },
                             keyboard: TextInputType.name,
@@ -71,18 +73,33 @@ class LoginPage extends StatelessWidget {
                             validator: (value) {
                               if(value==null||value.isEmpty){
                               return 'Password is mandatory';}
+                              else{
+                                return null;
+                              }
                             },
                             text: 'Password',
                             keyboard: TextInputType.name,
                             control: passwordcontroller,
                           ),
+                          box,
+                          Row(mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                              Navigator.push(context,MaterialPageRoute(builder: (ctx)=>const Passwordreset()));
+                                },
+                                child: Text('Forgot Password?',
+                                style: detailfont(10,const Color.fromARGB(255, 4, 135, 241),FontWeight.w300)),
+                              ),
+                            ],
+                          )
                         ])),
                         loginnbox,
                           BlocBuilder<AuthBloc, AuthState>(
                       buildWhen: (previous, current) => current is Autherror,
                       builder: (context, state) {
                         if(state is Autherror){
-                        return Container(width: screenwidth,
+                        return SizedBox(width: screenwidth,
                         height: 50,
                         child:  Center(child: Row(
                           children: [const Icon(Icons.error,color: Color.fromARGB(255, 230, 207, 4),),
@@ -90,7 +107,7 @@ class LoginPage extends StatelessWidget {
                             style: detailfont(10,Colors.red,FontWeight.w300),),
                           ],
                         )),);}
-                        else{return SizedBox();}
+                        else{return const SizedBox();}
                       },
                     ),
                     loginnbox,
@@ -112,7 +129,7 @@ class LoginPage extends StatelessWidget {
                           debugPrint('this is success');
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
-                                  builder: (ctx) => HomeScreen()),
+                                  builder: (ctx) => const HomeScreen()),
                               (route) => false);
                         } else if (state is Autherror) {
                            Navigator.of(context).pop();
@@ -150,7 +167,8 @@ class LoginPage extends StatelessWidget {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (ctx) => SignUp()));
                             },
-                            child: const Text('Sign Up'))
+                            child: Text('Sign Up',
+                            style: detailfont(13,const Color.fromARGB(255, 4, 135, 241),FontWeight.w300),))
                       ],
                     )
                   ],

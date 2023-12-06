@@ -11,3 +11,13 @@ class WishdeleteEvent extends HomewidgetcontrolEvent{
   final String id;
   WishdeleteEvent({required this.id});
 }
+
+class ProfileinitEvent extends HomewidgetcontrolEvent{}
+
+class UpdateprofileEvent extends HomewidgetcontrolEvent{
+  final String name,phone;
+  UpdateprofileEvent({
+    required this.name,
+    required this.phone,
+  });
+}

@@ -23,3 +23,15 @@ class SignupAutherror extends AuthState{}
 
 class Signoutstate extends AuthState{}
 
+class PassresetloadingState extends AuthState{}
+
+class Passwordsuccesssstate extends AuthState{
+}
+
+class PasswordexceptionState extends AuthState{
+  final String error;
+  PasswordexceptionState({
+    required this.error
+  });
+}
+

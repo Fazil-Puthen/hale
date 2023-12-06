@@ -10,5 +10,9 @@ class Navigationwidgetchangeevent extends HomeEvent{
   Navigationwidgetchangeevent({required this.index});
 }
 
+class FetchNameEvent extends HomeEvent{}
+
+
+
 
 

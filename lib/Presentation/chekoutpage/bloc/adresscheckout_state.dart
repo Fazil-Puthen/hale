@@ -9,7 +9,7 @@ class AdressloadingState extends AdresscheckoutState{}
 
 class AdressInitstate extends AdresscheckoutState{
   final int adressindex;
-  final List<adressmodel> adreslist;
+  final List<Adressmodel> adreslist;
   AdressInitstate({
     required this.adressindex,
     required this.adreslist});

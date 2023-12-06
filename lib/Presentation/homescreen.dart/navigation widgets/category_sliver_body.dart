@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
+import 'package:hale/common_widgets/constants.dart';
 
 class CategoryWidget extends StatelessWidget {
   const CategoryWidget({super.key});
@@ -7,7 +7,6 @@ class CategoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenwidth = MediaQuery.of(context).size.width;
-    final screenheight = MediaQuery.of(context).size.height;
     return Container(
       width: screenwidth*0.8,
       height: double.maxFinite,
@@ -19,7 +18,7 @@ class CategoryWidget extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ExpansionTile(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                  leading: Icon(Icons.list,size: 15,),
+                  leading:const  Icon(Icons.list,size: 15,),
                   collapsedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                   collapsedBackgroundColor:Colors.black.withOpacity(0.1),
                   backgroundColor: Colors.white,
@@ -31,7 +30,7 @@ class CategoryWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                     ),
                     leading: ClipRRect(
-                        child: Container(
+                        child: SizedBox(
                       width: screenwidth * 0.15,
                       height: 300,
                       child: Image(
@@ -39,7 +38,7 @@ class CategoryWidget extends StatelessWidget {
                     )),
                     title: Text(taglist[index]),
                     subtitle: const Text(
-                        'For a scenario like this where you have different sections, consider using a '),
+                        'All the fashions you can find it on our shopping page '),
                   ),
                 ]);
               },

@@ -6,7 +6,7 @@ import 'package:hale/Presentation/cartpage/refracted%20widgets/cartcontainer.dar
 import 'package:hale/Presentation/chekoutpage/bloc/adresscheckout_bloc.dart';
 import 'package:hale/Presentation/chekoutpage/bloc/checkout_bloc.dart';
 import 'package:hale/Presentation/chekoutpage/checkoutscreen.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
+import 'package:hale/common_widgets/constants.dart';
 import 'package:hale/Presentation/login_or_signup/widjets.dart';
 
 
@@ -121,7 +121,7 @@ class CartPage extends StatelessWidget {
                           onTap: () {
                             context.read<AdresscheckoutBloc>().add(AdressinitEvent(adressindex: 0));
                             context.read<CheckoutBloc>().add(CheckoutInitevent());
-                            Navigator.push(context, MaterialPageRoute(builder: (ctx)=>Checkout()));
+                            Navigator.push(context, MaterialPageRoute(builder: (ctx)=>const Checkout()));
                           })
                     ],
                   );

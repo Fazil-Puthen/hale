@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hale/Presentation/boardingscreen/intropages.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
-import 'package:hale/Presentation/homescreen.dart/navigation_screen.dart';
+import 'package:hale/common_widgets/constants.dart';
 import 'package:hale/Presentation/login_or_signup/auth_bloc/auth_bloc.dart';
 import 'package:hale/Presentation/login_or_signup/login_screen.dart';
 import 'package:hale/Presentation/login_or_signup/widjets.dart';
@@ -71,7 +70,7 @@ class SignUp extends StatelessWidget {
                         {
                           return 'Please enter your name';
                         }
-                        else{validateName(value);}
+                        else{return validateName(value);}
                       },
                       text: 'Name',
                       keyboard: TextInputType.name,
@@ -88,8 +87,11 @@ class SignUp extends StatelessWidget {
                               {
                                 return 'Please enter phone number';
                               }
-                              else if(value.length<10){
-                                return 'Phone number must have 10 numbers';
+                              else if(value.length<10||value.length>10){
+                                return 'Phone number should be  10 digits';
+                              }
+                              else{
+                                return null;
                               }
                             },
                             text: 'Phone',
@@ -105,6 +107,9 @@ class SignUp extends StatelessWidget {
                               else if(!value.contains('@')){
                                 return 'Not a valid email';
                               }
+                              else{
+                                return null;
+                              }
                             },
                             text: 'Email',
                             keyboard: TextInputType.name,
@@ -116,6 +121,9 @@ class SignUp extends StatelessWidget {
                               if(value==null||value.isEmpty)
                               {
                                 return 'Password is mandatory';
+                              }
+                              else{
+                                return null;
                               }
                             },
                             text: 'password',
@@ -136,10 +144,11 @@ class SignUp extends StatelessWidget {
                             });
                           }
                           else if(state is SignupSuccess){
+                            userid=emailcontroller.text.trim();
                             username=namecontroller.text;
                             Navigator.of(context).
                             pushAndRemoveUntil(
-                              MaterialPageRoute(builder: (ctx)=> Intropage()), (route) => false);
+                              MaterialPageRoute(builder: (ctx)=>const  Intropage()), (route) => false);
                           }
                           else if(state is SignupAutherror){
                             emailcontroller.clear();
@@ -171,7 +180,8 @@ class SignUp extends StatelessWidget {
                             TextButton(onPressed:(){
                               Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx)=>LoginPage()));
                             },
-                             child:const  Text('Sign In'))
+                             child: Text('Sign In',
+                             style: detailfont(14,const Color.fromARGB(255, 4, 135, 241),FontWeight.w300),))
                       
                     
                   ],

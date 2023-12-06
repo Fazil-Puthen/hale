@@ -10,7 +10,7 @@ enum Addordelete{
 
 class Quantityaddordelete extends QuantityEvent{
   final Addordelete quantitycontrol;
-  int quantitiy;
+  final int quantitiy;
   final String productid;
   final List<Productmodel> cartlist;
   final int index;
@@ -22,7 +22,4 @@ class Quantityaddordelete extends QuantityEvent{
     required this.cartlist,
     required this.index});
 
-  void printline(){
-    print('this is the event');
-  }
 }

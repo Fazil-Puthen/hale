@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hale/Models/productmodel.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
-import 'package:hale/Presentation/detailspage/details_screen.dart';
+import 'package:hale/common_widgets/constants.dart';
 import 'package:hale/Presentation/shoppage/bloc/shoppage_bloc.dart';
 import 'package:hale/Presentation/shoppage/refracted%20widgets/productgridview.dart';
 
@@ -40,15 +39,15 @@ class Shoppage extends StatelessWidget {
           //success state
          else if (state is CategorylistsuccessState) {
             List<Productmodel> productlist = state.categorylist;
-            return Container(
+            return SizedBox(
                 width: screenwidth,
                 height: double.infinity,
-                color: pinkcolor,
+                // color: pinkcolor,
                 child: Productgridview(
                     productlist: productlist, screenheigth: screenheigth));
           } else if (state is CategorylistfailedState) {
             //failed state
-            return const errorwidget(
+            return const Errorwidget(
               text: 'New Trends coming soon',
             );
           } else {

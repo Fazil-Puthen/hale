@@ -22,10 +22,11 @@ class ShoppageBloc extends Bloc<ShoppageEvent, ShoppageState> {
     products.clear();
     final result=await FirebaseFirestore.instance.collection('products').get();
     List<String> docid=result.docs.map((DocumentSnapshot doc) =>doc.id ).toList();
+    
     for(var id in docid){
       final document=result.docs.firstWhere((doc) => doc.id==id);
+      if(event.selection==Seperate.item){
       if(document['category']==event.category){
-
         final filteredproduct=Productmodel(
           brand: document['Brand'], 
           name: document['Name'],
@@ -37,7 +38,21 @@ class ShoppageBloc extends Bloc<ShoppageEvent, ShoppageState> {
           //  print('this is the success state ${products.length}');
           
           products.add(filteredproduct);
-      }
+      }}
+      else if(event.selection==Seperate.price){
+      if(document['price']<event.price){
+        final filteredproduct=Productmodel(
+          brand: document['Brand'], 
+          name: document['Name'],
+          category: document['category'],
+          description: document['description'],
+          price: document['price'], 
+          quantitiy: document['quantity'],
+          imageurl: document['imageurl'],);
+          //  print('this is the success state ${products.length}');
+          
+          products.add(filteredproduct);
+      }}
     }
     if(products.isNotEmpty){
     emit(CategorylistsuccessState(categorylist: products));

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hale/Presentation/Address%20page/address_screen.dart';
 import 'package:hale/Presentation/Address%20page/bloc/adress_bloc.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
+import 'package:hale/common_widgets/constants.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/refracted_widgets/drawer_items.dart';
 import 'package:hale/Presentation/login_or_signup/auth_bloc/auth_bloc.dart';
 import 'package:hale/Presentation/login_or_signup/login_screen.dart';
 import 'package:hale/Presentation/orderspage/bloc/orders_bloc.dart';
 import 'package:hale/Presentation/orderspage/ordersscreen.dart';
-import 'package:hale/Presentation/profile_screen/profile_screen.dart';
+
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({
@@ -40,12 +40,12 @@ class DrawerWidget extends StatelessWidget {
                         backgroundColor: Colors.white,
                         radius: 50,
                         backgroundImage: AssetImage(
-                            'assets/full-length-cheerful-woman-denim-clothes-posing-white-wall.jpg'),
+                            hale),
                       ),
                       box,
                       Text(
-                        'Fazil Puthen',
-                        style: textfont,
+                        username,
+                        style: detailfont(12,Colors.black,FontWeight.bold),
                       ),
                       box,
                       Text(
@@ -72,18 +72,10 @@ class DrawerWidget extends StatelessWidget {
               dbox,
               const DrawerItems(icon: Icon(Icons.payment), label: 'Payment'),
               dbox,
-              InkWell(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>ProfilePage()));
-                },
-                child: const DrawerItems(
-                    icon: Icon(Icons.face_5_outlined), label: 'Profile'),
-              ),
-              dbox,
               //Adress
               GestureDetector(
                 onTap:(){ context.read<AdressBloc>().add(AdressfetchEvent());
-                Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>AdressPage()));},
+                Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const AdressPage()));},
                 child: const DrawerItems(icon: Icon(Icons.near_me), label: 'Adress')),
               dbox,
               //Signout

@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hale/Models/productmodel.dart';
-import 'package:hale/Presentation/cartpage/bloc/cart_bloc.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
+import 'package:hale/common_widgets/constants.dart';
 import 'package:meta/meta.dart';
 
 part 'quantity_event.dart';
@@ -28,13 +27,11 @@ class QuantityBloc extends Bloc<QuantityEvent, QuantityState> {
     if(event.quantitycontrol==Addordelete.add){
       change=event.quantitiy+1;
       qapricechange=(event.cartlist[event.index].quantitypricechange!+event.cartlist[event.index].price);
-      print('this is addordel add $change');
     }
     else if(event.quantitycontrol==Addordelete.delete){
       if(event.quantitiy>1){
       change=event.quantitiy-1;
-      qapricechange=(event.cartlist[event.index].quantitypricechange!-event.cartlist[event.index].price);
-      print('this is addordel delete $change');}
+      qapricechange=(event.cartlist[event.index].quantitypricechange!-event.cartlist[event.index].price);}
       else{
       await quantiychange.delete();
       event.cartlist.removeAt(event.index);

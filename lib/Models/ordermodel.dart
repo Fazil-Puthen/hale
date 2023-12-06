@@ -4,6 +4,7 @@ class Ordermodel{
   final String date;
   final int totalamount;
   final List<dynamic> items;
+  final String docId;
 
   Ordermodel({
     required this.orderid,
@@ -11,6 +12,7 @@ class Ordermodel{
     required this.date,
     required this.items,
     required this.totalamount,
+    required this.docId,
   });
 
 }

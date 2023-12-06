@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hale/Presentation/cartpage/cart_screen.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation_screen.dart';
+import 'package:hale/common_widgets/constants.dart';
 import 'package:lottie/lottie.dart';
 
 class Payfailed extends StatefulWidget {
@@ -19,8 +18,8 @@ class _PaysuccessState extends State<Payfailed> {
     super.initState();
   }
   void timeout()async{
-    await Future.delayed(Duration(seconds: 7));
-    Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const CartPage()));
+    await Future.delayed(const Duration(seconds: 5));
+    Navigator.of(context).pushReplacement((MaterialPageRoute(builder: (ctx)=>const HomeScreen())));
   }
 
   @override
@@ -28,7 +27,7 @@ class _PaysuccessState extends State<Payfailed> {
     return  Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: (){},
-         icon: Icon(Icons.home_outlined,size: 20,)),
+         icon: const Icon(Icons.home_outlined,size: 20,)),
         title: Image.asset(hale,scale: 6,),
         centerTitle: true,
       ),
@@ -46,8 +45,8 @@ class _PaysuccessState extends State<Payfailed> {
           Text('Order not placed',style: detailfont(20,Colors.red,FontWeight.bold),),
           box,
           Text('Payment Failed',style: detailfont(17,Colors.black,FontWeight.w400),),
-          SizedBox(height: 5,),
-          Text('Some error occured during payment',style: detailfont(13,Colors.red,FontWeight.w400)),
+          const SizedBox(height: 5,),
+          Text('Payment was not completed',style: detailfont(13,Colors.red,FontWeight.w400)),
           Text('please try again after some time',style: detailfont(12,Colors.red,FontWeight.w400)),
         ],
       ),

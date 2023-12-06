@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
-import 'package:hale/Presentation/orderdetailpage/orderdetail.dart';
+import 'package:hale/common_widgets/constants.dart';
+import 'package:hale/Presentation/orderdetailpage/orderdetailsceen.dart';
 import 'package:hale/Presentation/orderspage/bloc/orders_bloc.dart';
 
 BlocBuilder<OrdersBloc, OrdersState> orderlistbuild(double screenwidth) {
@@ -93,7 +93,7 @@ BlocBuilder<OrdersBloc, OrdersState> orderlistbuild(double screenwidth) {
                      InkWell(
                       onTap: () {
                         Navigator.of(context).
-                        push(MaterialPageRoute(builder:(ctx)=>OrderDetailpage(orderitem: orderlist[index],)));
+                        push(MaterialPageRoute(builder:(ctx)=>OrderDetailpage(docid: orderlist[index].docId,)));
                       },
                        child: Container(width: 100,
                        height: 25,
@@ -115,7 +115,7 @@ BlocBuilder<OrdersBloc, OrdersState> orderlistbuild(double screenwidth) {
             itemCount: orderlist.length,
           );
         } else {
-          return SizedBox();
+          return const SizedBox();
         }
       },
     );

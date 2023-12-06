@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
+import 'package:hale/common_widgets/constants.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation_screen.dart';
 import 'package:lottie/lottie.dart';
 
@@ -20,8 +20,8 @@ class _PaysuccessState extends State<Paysuccess> {
     super.initState();
   }
   void timeout()async{
-    await Future.delayed(Duration(seconds: 6));
-    Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>HomeScreen()));
+    await Future.delayed(const Duration(seconds: 5));
+    Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const HomeScreen()));
   }
 
   @override
@@ -29,7 +29,7 @@ class _PaysuccessState extends State<Paysuccess> {
     return  Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: (){},
-         icon: Icon(Icons.home_outlined,size: 20,)),
+         icon:const  Icon(Icons.home_outlined,size: 20,)),
         title: Image.asset(hale,scale: 6,),
         centerTitle: true,
       ),
@@ -47,9 +47,9 @@ class _PaysuccessState extends State<Paysuccess> {
           Text('Order placed',style: detailfont(20,Colors.green.shade700,FontWeight.bold),),
           box,
           Text('order id: ${widget.orderid}',style: detailfont(13,Colors.black,FontWeight.w400),),
-          SizedBox(height: 5,),
+          const SizedBox(height: 5,),
           Text('payment id: ${widget.paymentid}',style: detailfont(13,Colors.black,FontWeight.w400)),
-          SizedBox(height: 15,),
+          const SizedBox(height: 15,),
           Text('You can track your order in your orders section',style: detailfont(10,Colors.blue,FontWeight.w400)),
         ],
       ),

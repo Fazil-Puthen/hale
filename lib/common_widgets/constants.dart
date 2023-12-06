@@ -3,11 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/category_sliver_body.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/home_sliver_body.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/saved_sliver_body.dart';
-import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/shop_sliver_body.dart';
+import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/profile_sliver_body.dart';
 import 'package:lottie/lottie.dart';
 
 
-String userid='fazilkdr@gmail.com';
+late String userid;
 late String username;
 final cardfont=GoogleFonts.aBeeZee(fontSize: 14,fontWeight:FontWeight.w400,color: Colors.black);
 final textfont=GoogleFonts.aBeeZee(fontSize: 12,fontWeight: FontWeight.normal,color: Colors.black);
@@ -29,7 +29,7 @@ const hale='assets/Hale.png';
 const error='assets/9623052.png';
 
 final List<String> category = ['Pants','Tshirt','Shirt','Trousers','Joggers',];
- List<Widget> navigationwidgets=[HomeWidget(),CategoryWidget(),ShopWidget(),WishWidget()];
+ List<Widget> navigationwidgets=[const HomeWidget(),const CategoryWidget(),const ShopWidget(),const WishWidget()];
 const List<String> imagelist=[man,woman,boy,girl,sports,trek];
 const List<String> taglist=['Men','Women','Boys','Girls','Sports','Trek'];
 const List<String> heading=['Home','Category','Shop','Wishlist'];
@@ -39,7 +39,7 @@ const List<String> heading=['Home','Category','Shop','Wishlist'];
 //error snackbar
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> errorsnackbar(String text,BuildContext context){
   return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    duration: Duration(seconds: 2),
+    duration: const Duration(milliseconds: 1500),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),   
   content: Row(children: [const Icon(Icons.error),Text(text,style: errorfont,)],),
   behavior: SnackBarBehavior.floating,
@@ -92,9 +92,9 @@ class Loadingstatewidget extends StatelessWidget {
 
 
 //error widget
-class errorwidget extends StatelessWidget {
+class Errorwidget extends StatelessWidget {
   final String text;
-  const errorwidget({
+  const Errorwidget({
     super.key,required this.text
   });
 

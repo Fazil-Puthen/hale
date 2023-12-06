@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hale/Models/productmodel.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
+import 'package:hale/common_widgets/constants.dart';
 
 class CheckoutTile extends StatelessWidget {
   const CheckoutTile({
@@ -25,7 +25,7 @@ class CheckoutTile extends StatelessWidget {
         color: Colors.white,
       ),
       child: Padding(
-          padding: EdgeInsets.all(10),
+          padding:const  EdgeInsets.all(10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

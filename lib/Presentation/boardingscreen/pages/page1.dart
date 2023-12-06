@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
+import 'package:hale/common_widgets/constants.dart';
 import 'package:lottie/lottie.dart';
 
 class Page1 extends StatelessWidget {
@@ -16,7 +15,7 @@ class Page1 extends StatelessWidget {
         height: 200,
         width: 200,
         repeat: true,),
-        SizedBox(height: 25,),
+        const SizedBox(height: 25,),
         Text('Welcome $username',style: detailfont(15,Colors.black,FontWeight.w400),)
       ],),
     ),);

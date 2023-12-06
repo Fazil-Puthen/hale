@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hale/Presentation/boardingscreen/bloc/boardingbloc_bloc.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
-import 'package:hale/Presentation/login_or_signup/auth_bloc/auth_bloc.dart';
+import 'package:hale/common_widgets/constants.dart';
 import 'package:lottie/lottie.dart';
 
 class Page2 extends StatelessWidget {
@@ -26,7 +24,7 @@ class Page2 extends StatelessWidget {
             const SizedBox(
               height: 25,
             ),
-            textchange()
+            const Textchange()
           ],
         ),
       ),
@@ -34,15 +32,15 @@ class Page2 extends StatelessWidget {
   }
 }
 
-class textchange extends StatefulWidget {
-  const textchange({
+class Textchange extends StatefulWidget {
+  const Textchange({
     super.key,
   });
   @override
-  State<textchange> createState() => _textchangeState();
+  State<Textchange> createState() => _TextchangeState();
 }
 
-class _textchangeState extends State<textchange> {
+class _TextchangeState extends State<Textchange> {
   @override
   void initState() {
     context.read<BoardingblocBloc>().add(Textchangeevent(num:1));
@@ -55,7 +53,6 @@ class _textchangeState extends State<textchange> {
       builder: (context, state) {
         if(state is Textsuccessstate){
           final k=state.k;
-          print('this is the $k');
         for(int i=k;i<-1;i++){
         context.read<BoardingblocBloc>().add(Textchangeevent(num:i));}
           final text=state.text;

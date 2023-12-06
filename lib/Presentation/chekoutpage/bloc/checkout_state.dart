@@ -7,7 +7,7 @@ final class CheckoutInitial extends CheckoutState {}
 
 class Checkoutinitstate extends CheckoutState{
   final List<Productmodel> checkoutlist;
-  final List<adressmodel> adreslist;
+  final List<Adressmodel> adreslist;
   final int totslamonut;
   final bool isAdress;
 
@@ -20,7 +20,9 @@ class Checkoutinitstate extends CheckoutState{
   });
 }
 
-class checkoutloadingstate extends CheckoutState{}
+class Checkoutloadingstate extends CheckoutState{}
+
+class RazorpayErrorstate extends CheckoutState{}
 
 class Adressloadingstate extends CheckoutState{}
 

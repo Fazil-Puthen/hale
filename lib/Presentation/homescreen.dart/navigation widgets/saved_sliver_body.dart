@@ -2,9 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hale/Models/productmodel.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
+import 'package:hale/common_widgets/constants.dart';
 import 'package:hale/Presentation/detailspage/details_screen.dart';
-import 'package:hale/Presentation/homescreen.dart/bloc/home_bloc.dart';
 import 'package:hale/Presentation/homescreen.dart/bloc/homewidgetcontrol_bloc.dart';
 
 class WishWidget extends StatelessWidget {
@@ -13,7 +12,6 @@ class WishWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
      final screenwidth=MediaQuery.of(context).size.width;
-    final screenheight=MediaQuery.of(context).size.height;
     return Container(
       width: screenwidth*0.8,
       height: double.maxFinite,

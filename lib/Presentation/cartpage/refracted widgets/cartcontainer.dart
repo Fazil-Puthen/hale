@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hale/Models/productmodel.dart';
 import 'package:hale/Presentation/cartpage/bloc/cart_bloc.dart';
 import 'package:hale/Presentation/cartpage/bloc/quantity_bloc.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
+import 'package:hale/common_widgets/constants.dart';
 
 class CartContainer extends StatelessWidget {
   const CartContainer({
@@ -27,7 +27,7 @@ class CartContainer extends StatelessWidget {
         color: Colors.white,
       ),
       child: Padding(
-        padding: EdgeInsets.all(10),
+        padding:const  EdgeInsets.all(10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -125,8 +125,6 @@ class CartContainer extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          print(
-                              'this is quantity ${cartlist[index].cartquantity}');
                           context.read<QuantityBloc>().add(Quantityaddordelete(
                               quantitycontrol: Addordelete.add,
                               quantitiy: cartlist[index].cartquantity!,

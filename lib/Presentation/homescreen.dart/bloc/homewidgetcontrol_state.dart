@@ -5,18 +5,23 @@ sealed class HomewidgetcontrolState {}
 
 final class HomewidgetcontrolInitial extends HomewidgetcontrolState {}
 
-class wishLoadingstate extends HomewidgetcontrolState{
-    void details(){
-    print('the loading change ');
-  }
+class WishLoadingstate extends HomewidgetcontrolState{
 }
 
 class Wishsuccessstate extends HomewidgetcontrolState{
   final List<Productmodel> wishlist;
   Wishsuccessstate({required this.wishlist});
-    void details(){
-    print('the wishsuccess');
-  }
 }
 
 class WishlistEmptystate extends HomewidgetcontrolState{}
+
+class ProfileinintSuccessstate extends HomewidgetcontrolState{
+  final Usermodel userdata;
+  ProfileinintSuccessstate({
+    required this.userdata,
+  });
+}
+
+class Profileloadingstate extends HomewidgetcontrolState{}
+
+class ProfileFetchErrorstate extends HomewidgetcontrolState{}

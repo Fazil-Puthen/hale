@@ -14,7 +14,7 @@ class NavigatioBarCurve extends StatelessWidget {
     return CurvedNavigationBar(
         onTap:ontabtapped,
         height: 55,
-        animationDuration: Duration(milliseconds: 500),
+        animationDuration: const Duration(milliseconds: 500),
         animationCurve: Curves.ease,
         backgroundColor: Colors.white,
         color: Colors.white,
@@ -22,7 +22,7 @@ class NavigatioBarCurve extends StatelessWidget {
         items: const [
           Icon(Icons.home_outlined),
           Icon(Icons.category_outlined),
-          Icon(Icons.shopping_bag_outlined),
+          Icon(Icons.face_6_sharp),
           Icon(Icons.save_alt),
         ]);
   }

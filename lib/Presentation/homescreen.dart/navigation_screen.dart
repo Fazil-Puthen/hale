@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hale/Presentation/cartpage/bloc/cart_bloc.dart';
 import 'package:hale/Presentation/cartpage/cart_screen.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
+import 'package:hale/common_widgets/constants.dart';
 import 'package:hale/Presentation/homescreen.dart/bloc/home_bloc.dart';
 import 'package:hale/Presentation/homescreen.dart/bloc/homewidgetcontrol_bloc.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/refracted_widgets/drawer.dart';
@@ -10,9 +10,9 @@ import 'package:hale/Presentation/homescreen.dart/navigation%20widgets/refracted
 
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+ const  HomeScreen({super.key});
 
-  int currentindex=0;
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +34,8 @@ class HomeScreen extends StatelessWidget {
               return [
                  SliverAppBar(
                   actions: [InkWell(onTap: () {
-                    print('cart fetch event calling');
-                    print('this is user :$userid');
                       context.read<CartBloc>().add(Cartfetchevent(userid: userid));
-                    Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>CartPage()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>const CartPage()));
                   },
                    
                       child: const Icon(Icons.shopping_cart_outlined)),wbox],
@@ -55,8 +53,6 @@ class HomeScreen extends StatelessWidget {
             body:BlocBuilder<HomeBloc, HomeState>(
               builder: (context, state) {
                 if(state is Navigationchangestate){
-                  print('this is the widget change ${state.index}');
-                  // currentindex=state.index;
                 return navigationwidgets[state.index];}
                  else{return navigationwidgets[0];}
               }

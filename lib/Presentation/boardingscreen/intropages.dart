@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:hale/Presentation/boardingscreen/pages/page1.dart';
 import 'package:hale/Presentation/boardingscreen/pages/page2.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
+import 'package:hale/common_widgets/constants.dart';
 import 'package:hale/Presentation/homescreen.dart/navigation_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Intropage extends StatefulWidget {
-   Intropage({super.key});
+   const Intropage({super.key});
 
   @override
   State<Intropage> createState() => _IntropageState();
 }
 
 class _IntropageState extends State<Intropage> {
-PageController _controller=PageController();
+final PageController _controller=PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +21,8 @@ PageController _controller=PageController();
       body: Stack(
         children:[ PageView(
           controller: _controller,
-          children: [Page1(),Page2(),],),
-             Container(alignment: Alignment(0, 0.7),
+          children: const [Page1(),Page2(),],),
+             Container(alignment: const Alignment(0, 0.7),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -36,10 +36,10 @@ PageController _controller=PageController();
                   type: WormType.thinUnderground
                 ) ,),
                 TextButton(onPressed: (){
-                  Navigator.push(context,MaterialPageRoute(builder: (ctx)=>HomeScreen()));
+                  Navigator.push(context,MaterialPageRoute(builder: (ctx)=>const HomeScreen()));
                 },
                  child: Text('Skip',style: detailfont(13,Colors.blue.shade700,FontWeight.w300),)),
-                 SizedBox(height: 25,)
+                 const SizedBox(height: 25,)
               ],
             ))]
       ),

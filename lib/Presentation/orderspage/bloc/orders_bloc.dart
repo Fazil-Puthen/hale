@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:hale/Models/ordermodel.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
-import 'package:meta/meta.dart';
+import 'package:hale/common_widgets/constants.dart';
 
 part 'orders_event.dart';
 part 'orders_state.dart';
@@ -15,6 +15,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
       // TODO: implement event handler
     });
     on<OrdersFetchevent>(orderfetchhandler);
+    on<DeleteItemEvent>(deleteitemhandler);
   }
   final firestore=FirebaseFirestore.instance;
   List<Ordermodel> orderlist=[];
@@ -32,7 +33,8 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     paymentid: data['paymentid'],
     date: data['date'],
     items: data['items'],
-    totalamount: data['totalprice']);
+    totalamount: data['totalprice'],
+    docId: document.reference.id);
 
    orderlist.add(orderitem);
    }
@@ -43,4 +45,31 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
    }
 
   }
+
+  FutureOr<void> deleteitemhandler(DeleteItemEvent event, Emitter<OrdersState> emit) async{
+    
+    final deltedoc= await firestore.collection('users').doc(userid).collection('orders').
+    doc(event.docId).get();
+
+    final data=deltedoc.data();
+    if(data!=null&&data.containsKey('items')){
+      if(data['items'].length>1){
+      
+      List<dynamic> itemlist=List.from(data['items']);
+      itemlist.removeAt(event.index);
+      
+      await firestore.collection('users').doc(userid).
+      collection('orders').doc(event.docId).update({'items':itemlist});
+      }
+      else{
+      
+      await firestore.collection('users').doc(userid).
+      collection('orders').doc(event.docId).delete();
+      }
+
+      await orderfetchhandler(OrdersFetchevent(),emit);
+      
+    }
+  }
+  
 }

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hale/Models/adressmodel.dart';
 import 'package:hale/Presentation/chekoutpage/bloc/adresscheckout_bloc.dart';
-import 'package:hale/Presentation/chekoutpage/bloc/checkout_bloc.dart';
-import 'package:hale/Presentation/common_widgets/constants.dart';
+import 'package:hale/common_widgets/constants.dart';
 
 class Adressbottomsheet extends StatefulWidget {
   const Adressbottomsheet({
@@ -16,7 +15,7 @@ class Adressbottomsheet extends StatefulWidget {
 
   final double screenwidth;
   final double screenheight;
-  final List<adressmodel> addreslist;
+  final List<Adressmodel> addreslist;
   final int selectedindex;
 
   @override
